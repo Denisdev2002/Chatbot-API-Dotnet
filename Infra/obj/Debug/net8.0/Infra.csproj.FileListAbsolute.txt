@@ -1,0 +1,17 @@
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\bin\Debug\net8.0\Infra.deps.json
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\bin\Debug\net8.0\Infra.runtimeconfig.json
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\bin\Debug\net8.0\Infra.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\bin\Debug\net8.0\Infra.pdb
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\bin\Debug\net8.0\Domain.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\bin\Debug\net8.0\Domain.pdb
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.csproj.AssemblyReference.cache
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.AssemblyInfoInputs.cache
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.AssemblyInfo.cs
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.csproj.CoreCompileInputs.cache
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.csproj.Up2Date
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\refint\Infra.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.pdb
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.genruntimeconfig.cache
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\ref\Infra.dll
