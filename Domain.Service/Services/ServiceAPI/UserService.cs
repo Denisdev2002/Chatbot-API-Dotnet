@@ -5,10 +5,7 @@ using Domain.Service.Services.ServiceJwt;
 using Domain.ViewModel;
 using Infra.Interfaces;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Domain.Service.Services.ServiceApi
 {
@@ -17,9 +14,9 @@ namespace Domain.Service.Services.ServiceApi
         private readonly IUserRepository _userRepository;
         private readonly ILogger<UserService> _logger;
         private readonly HashPasswordService _hashPassword;
-        private readonly JwtTokenService _jwtTokenService;
+        private readonly JwtTokenServiceAPI _jwtTokenService;
 
-        public UserService(IUserRepository userRepository, ILogger<UserService> logger, HashPasswordService hashPassword, JwtTokenService jwtTokenService)
+        public UserService(IUserRepository userRepository, ILogger<UserService> logger, HashPasswordService hashPassword, JwtTokenServiceAPI jwtTokenService)
         {
             _userRepository = userRepository;
             _logger = logger;
@@ -43,6 +40,7 @@ namespace Domain.Service.Services.ServiceApi
         {
             var user = new User
             {
+                Id = Guid.NewGuid().ToString(),
                 UserName = userViewModel.Name,
                 Email = userViewModel.Email,
                 NormalizedEmail = userViewModel.Email,
@@ -54,18 +52,19 @@ namespace Domain.Service.Services.ServiceApi
         }
 
 
-        public async Task UpdateUserAsync(string email, User user)
+        public async Task UpdateUserAsync(string email, UserViewModel userViewModel)
         {
             var originUser = await _userRepository.GetUserByEmailAsync(email);
             if (originUser == null)
                 throw new Exception("Usuário não encontrado.");
 
             // Hash da senha antes de atualizar
-            user.PasswordHash = _hashPassword.Password(user.PasswordHash);
+            originUser.PasswordHash = _hashPassword.Password(userViewModel.Password);
 
-            originUser.UserName = user.UserName;
-            originUser.Email = user.Email;
-            originUser.PasswordHash = user.PasswordHash;
+            originUser.UserName = userViewModel.Name;
+            originUser.Email = userViewModel.Email;
+            originUser.PasswordHash = userViewModel.Password;
+            originUser.PhoneNumber = userViewModel.Number;
 
             await _userRepository.UpdateUserAsync(originUser);
         }

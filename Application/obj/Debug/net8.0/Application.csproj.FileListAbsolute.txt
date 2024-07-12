@@ -5,11 +5,13 @@ C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Ap
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Application.runtimeconfig.json
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Application.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Application.pdb
-C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Humanizer.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -24,6 +26,9 @@ C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Mi
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.Identity.Client.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
@@ -54,7 +59,6 @@ C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\Sy
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
@@ -135,6 +139,7 @@ C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\obj\Debug\net8.0\Ap
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\obj\Debug\net8.0\Application.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\obj\Debug\net8.0\Application.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\obj\Debug\net8.0\Application.sourcelink.json
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Application\obj\Debug\net8.0\staticwebassets\msbuild.Application.Microsoft.AspNetCore.StaticWebAssets.props

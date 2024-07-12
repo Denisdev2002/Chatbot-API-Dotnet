@@ -1,5 +1,4 @@
-﻿using AutoMapper.Configuration;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Entities.DataTransferObject;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -12,13 +11,13 @@ using System.Text;
 
 namespace Domain.Service.Services.ServiceJwt
 {
-    public class JwtTokenService
+    public class JwtTokenServiceAPI
     {
         private const int ExpirationMinutes = 30;
-        private readonly ILogger<JwtTokenService> _logger;
+        private readonly ILogger<JwtTokenServiceAPI> _logger;
         private readonly IConfiguration _configuration;
 
-        public JwtTokenService(ILogger<JwtTokenService> logger, IConfiguration configuration)
+        public JwtTokenServiceAPI(ILogger<JwtTokenServiceAPI> logger, IConfiguration configuration)
         {
             _logger = logger;
             _configuration = configuration;

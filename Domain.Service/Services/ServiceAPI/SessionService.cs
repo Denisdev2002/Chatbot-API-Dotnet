@@ -14,7 +14,7 @@ namespace Domain.Service.Service.ServiceAPI
         private readonly IUserRepository _userRepository;
 
         public SessionService(
-            SessionRepository sessionRepository,
+            ISessionRepository sessionRepository,
             ILogger<SessionService> logger,
             IUserRepository userRepository)
         {
@@ -49,7 +49,7 @@ namespace Domain.Service.Service.ServiceAPI
             var session = new Session
             {
                 IdSession = Guid.NewGuid().ToString(),
-                EmailUser = sessionViewModel.EmailUser,
+                EmailUser = user.Result.Email,
                 IsActive = true
             };
             await _sessionRepository.InsertSessionAsync(session);

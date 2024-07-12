@@ -1,6 +1,7 @@
 ﻿using Application.Service.Interfaces;
 using Domain.Entities;
 using Domain.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -19,7 +20,8 @@ namespace Application.api.Controllers
             _logger = logger;
 
         }
-        //[Authorize]
+
+        [Authorize]
         [HttpGet("toask/{idQuestion}")]
         public async Task<IActionResult> ToAskForModel(string idQuestion)
         {
@@ -34,6 +36,7 @@ namespace Application.api.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetQuestions()
         {
@@ -53,6 +56,7 @@ namespace Application.api.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateQuestion([FromBody] QuestionViewModel questionViewModel)
         {
@@ -72,6 +76,7 @@ namespace Application.api.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateQuestion(string id, [FromBody] QuestionViewModel questionViewModel)
         {
@@ -93,6 +98,7 @@ namespace Application.api.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteQuestion(string id)
         {
@@ -112,6 +118,7 @@ namespace Application.api.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("question/{id}")]
         public async Task<IActionResult> GetQuestionById(string id)
         {
@@ -134,6 +141,8 @@ namespace Application.api.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao buscar a question.");
             }
         }
+
+        [Authorize]
         [HttpGet("question/session/{idSession}")]
         public async Task<IActionResult> GetQuestionIdSession(string idSession)
         {

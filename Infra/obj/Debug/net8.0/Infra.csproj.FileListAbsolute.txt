@@ -9,6 +9,7 @@ C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.Ge
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.AssemblyInfoInputs.cache
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.AssemblyInfo.cs
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.csproj.CoreCompileInputs.cache
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.sourcelink.json
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.csproj.Up2Date
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\Infra.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Infra\obj\Debug\net8.0\refint\Infra.dll

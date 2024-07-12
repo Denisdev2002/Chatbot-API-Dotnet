@@ -1,12 +1,9 @@
 ﻿using Application.Service.Interfaces;
-using Domain.Entities;
 using Domain.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Threading.Tasks;
+
 
 namespace Application.Controllers
 {
@@ -22,7 +19,7 @@ namespace Application.Controllers
             _conversationApplication = conversationApplication;
             _logger = logger;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetConversations()
         {
@@ -41,7 +38,7 @@ namespace Application.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao obter as conversas.");
             }
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateConversation([FromBody] ConversationViewModel conversationViewModel)
         {
@@ -61,6 +58,7 @@ namespace Application.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateConversation(string id, [FromBody] ConversationViewModel conversationViewModel)
         {
@@ -82,6 +80,7 @@ namespace Application.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConversation(string id)
         {
@@ -101,6 +100,7 @@ namespace Application.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetConversationById(string id)
         {

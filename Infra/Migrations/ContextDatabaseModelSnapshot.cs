@@ -32,12 +32,9 @@ namespace Infra.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ResponseId")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("SessionId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -199,9 +196,7 @@ namespace Infra.Migrations
 
                     b.HasOne("Domain.Entities.Response", "Response")
                         .WithMany()
-                        .HasForeignKey("ResponseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ResponseId");
 
                     b.Navigation("Response");
 

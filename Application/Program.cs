@@ -13,9 +13,7 @@ using Domain.Service.Services.ServiceApiExternal;
 using Infra;
 using Domain.Service.Service.ServiceAPI;
 using Newtonsoft.Json;
-using Application.api.Controllers;
 using Newtonsoft.Json.Serialization;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +25,7 @@ var configuration = new ConfigurationBuilder()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", builder =>
-        builder.WithOrigins("http://localhost:3000")
+        builder.WithOrigins("*")
                .AllowAnyMethod()
                .AllowAnyHeader());
 });
@@ -111,9 +109,9 @@ builder.Services.AddScoped<IConversationService, ConversationService>();
 builder.Services.AddScoped<IConversationApplication, ConversationApplication>();
 
 builder.Services.AddScoped<RequestConversationService>();
-builder.Services.AddScoped<JwtTokenService>();
+builder.Services.AddScoped<JwtTokenServiceAPI>();
 builder.Services.AddScoped<HashPasswordService>();
-builder.Services.AddScoped<RequestSessionService>();
+//builder.Services.AddScoped<RequestSessionService>();
 builder.Services.AddScoped<ConnectClientService>();
 
 builder.Services.AddScoped<ContextDatabase>();

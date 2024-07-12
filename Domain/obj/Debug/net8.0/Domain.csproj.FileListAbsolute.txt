@@ -7,6 +7,7 @@ C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Domain\obj\Debug\net8.0\Domain.
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Domain\obj\Debug\net8.0\Domain.sourcelink.json
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Domain\obj\Debug\net8.0\Domain.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Domain\obj\Debug\net8.0\refint\Domain.dll
 C:\Users\Interfocus\Documents\ChatBot-Api-Dotnet\Domain\obj\Debug\net8.0\Domain.pdb

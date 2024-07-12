@@ -88,9 +88,9 @@ namespace Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SessionId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdSession = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ResponseId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    SessionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResponseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IdSession = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,8 +99,7 @@ namespace Infra.Migrations
                         name: "FK_Conversation_Response_ResponseId",
                         column: x => x.ResponseId,
                         principalTable: "Response",
-                        principalColumn: "ResponseId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ResponseId");
                     table.ForeignKey(
                         name: "FK_Conversation_Session_IdSession",
                         column: x => x.IdSession,

@@ -10,52 +10,21 @@ namespace Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         //[JsonIgnore]
-        public string Id { get; set; }
+        public string? Id { get; set; }
         [JsonProperty("session_id")]
-        public string SessionId { get; set; }
+        public string? SessionId { get; set; }
+        [JsonProperty("response")]
+        public Response? Response { get; set; }
+        [Newtonsoft.Json.JsonIgnore]
+        [ForeignKey("Response")]
+        public string? ResponseId { get; set; }
         [Newtonsoft.Json.JsonIgnore]
         [ForeignKey("Session")]
         public string? IdSession { get; set; }
-        [System.Text.Json.Serialization.JsonIgnore]
-        public Session Session { get; set; }
-
-        [System.Text.Json.Serialization.JsonIgnore]
-        [ForeignKey("Response")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string ResponseId { get; set; }
-
-        [JsonProperty("response")]
-        public Response Response { get; set; }
+        [Newtonsoft.Json.JsonIgnore]
+        public Session? Session { get; set; }
 
 
     }
 
-    public class Response
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string ResponseId { get; set; }
-
-        [JsonProperty("result")]
-        public string Result { get; set; }
-
-        [JsonProperty("sources")]
-        public List<Source> Sources { get; set; }
-
-    }
-
-    public class Source
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string SourceId { get; set; }
-
-        [JsonProperty("source_document")]
-        public string? SourceDocument { get; set; }
-
-        [JsonProperty("page_document")]
-        public float? PageDocument { get; set; }
-    }
 }

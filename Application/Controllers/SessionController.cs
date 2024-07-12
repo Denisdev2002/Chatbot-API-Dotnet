@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Entities.DataTransferObject;
 using Domain.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Application.API.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetSessions()
         {
@@ -42,6 +44,7 @@ namespace Application.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateSession([FromBody] SessionViewModel sessionViewModel)
         {
@@ -61,6 +64,7 @@ namespace Application.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSession(string id, [FromBody] SessionViewModel sessionViewModel)
         {
@@ -80,6 +84,7 @@ namespace Application.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSession(string id)
         {
@@ -99,6 +104,7 @@ namespace Application.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("session/{id}")]
         public async Task<IActionResult> GetSessionById(string id)
         {
@@ -121,6 +127,8 @@ namespace Application.API.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao buscar a sessão.");
             }
         }
+
+        [Authorize]
         [HttpGet("session/user/{email}")]
         public async Task<IActionResult> GetSessionByUser(string email)
         {
@@ -144,6 +152,7 @@ namespace Application.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id}/activate")]
         public async Task<IActionResult> ActivateSession(string id)
         {
@@ -163,6 +172,7 @@ namespace Application.API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id}/deactivate")]
         public async Task<IActionResult> DeactivateSession(string id)
         {

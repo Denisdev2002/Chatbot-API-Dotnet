@@ -29,9 +29,9 @@ namespace Application.Service.Application
         }
 
 
-        public async Task UpdateUserAsync(string email, User user)
+        public async Task UpdateUserAsync(string email, UserViewModel userViewModel)
         {
-            await _userService.UpdateUserAsync(email, user);
+            await _userService.UpdateUserAsync(email, userViewModel);
         }
 
         public async Task DeleteUserAsync(string email)

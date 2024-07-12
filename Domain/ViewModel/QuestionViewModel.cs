@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.ViewModel
 {
@@ -7,8 +6,8 @@ namespace Domain.ViewModel
     {
         [Key]
         public string? QuestionId { get; set; }
-        public string? text { get; set; }
-        public string? session_id { get; set; }
+        public string? Text { get; set; }
+        public string? Session_id { get; set; }
         public string IdSession { get; set; }
     }
 }

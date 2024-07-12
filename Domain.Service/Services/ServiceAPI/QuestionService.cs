@@ -127,8 +127,8 @@ namespace Domain.Service.Services.ServiceApi
                 {
                     Id = Guid.NewGuid().ToString(),
                     IdSession = questionViewModel.IdSession,
-                    text = questionViewModel.text,
-                    session_id = questionViewModel.session_id,
+                    text = questionViewModel.Text,
+                    session_id = questionViewModel.Session_id,
                 };
 
                 await _questionRepository.InsertQuestionAsync(question);
@@ -150,8 +150,8 @@ namespace Domain.Service.Services.ServiceApi
                 {
                     throw new Exception("Question não encontrada.");
                 }
-                originQuestion.text = questionViewModel.text;
-                Console.WriteLine($"Texto {originQuestion.text} atualizado para {questionViewModel.text}.");
+                originQuestion.text = questionViewModel.Text;
+                Console.WriteLine($"Texto {originQuestion.text} atualizado para {questionViewModel.Text}.");
                 await _questionRepository.UpdateQuestionAsync(originQuestion);
 
             }

@@ -41,7 +41,7 @@ namespace Application.api.Controllers
             }
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> InsertUser([FromBody] UserViewModel userViewModel)
         {
@@ -62,7 +62,7 @@ namespace Application.api.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("{email}")]
-        public async Task<IActionResult> UpdateUser(string email, [FromBody] User user)
+        public async Task<IActionResult> UpdateUser(string email, [FromBody] UserViewModel userViewModel)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Application.api.Controllers
                     return NotFound("Usuário não encontrado.");
                 }
 
-                await _userApplication.UpdateUserAsync(email, user);
+                await _userApplication.UpdateUserAsync(email, userViewModel);
                 return NoContent();
             }
             catch (UnauthorizedAccessException)
@@ -127,7 +127,7 @@ namespace Application.api.Controllers
                 return BadRequest("Email ou senha incorretos.");
             }
         }
-
+        
         [AllowAnonymous]
         [HttpGet("Email")]
         public async Task<IActionResult> GetUserByEmail(string email)

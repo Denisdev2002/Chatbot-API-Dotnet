@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(ContextDatabase))]
-    [Migration("20240710173848_Initial")]
+    [Migration("20240712154602_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -35,12 +35,9 @@ namespace Infra.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ResponseId")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("SessionId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -202,9 +199,7 @@ namespace Infra.Migrations
 
                     b.HasOne("Domain.Entities.Response", "Response")
                         .WithMany()
-                        .HasForeignKey("ResponseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ResponseId");
 
                     b.Navigation("Response");
 
