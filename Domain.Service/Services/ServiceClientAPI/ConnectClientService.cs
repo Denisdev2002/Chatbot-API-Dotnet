@@ -1,14 +1,7 @@
 ﻿using Domain.Entities;
-using Domain.ViewModel;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Domain.Service.Services.ServiceApiExternal
 {
@@ -30,7 +23,11 @@ namespace Domain.Service.Services.ServiceApiExternal
                 using ClientWebSocket ws = new ClientWebSocket();
                 Uri serverUri = new Uri("ws://127.0.0.1:8000/ws");
                 await ws.ConnectAsync(serverUri, CancellationToken.None);
-
+                if (question == null)
+                {
+                    throw new Exception("Pergunta não pode ser vazia.");
+                }
+                Console.WriteLine("Tipo do usuário : " + question.user_type);
                 if (ws.State == WebSocketState.Open)
                 {
                     if (string.IsNullOrEmpty(question.session_id) || !Guid.TryParse(question.session_id, out _))
@@ -39,6 +36,7 @@ namespace Domain.Service.Services.ServiceApiExternal
                     }
 
                     await SendMessage(ws, question);
+                    Console.WriteLine("Pergunta : " + question.text);
                     return await ReceiveMessage(ws);
                 }
                 else
@@ -102,28 +100,6 @@ namespace Domain.Service.Services.ServiceApiExternal
             catch (Exception ex)
             {
                 Console.WriteLine($"Exception: {ex.Message}");
-            }
-        }
-        public async Task<List<Conversation>> GetSessionId(string session_id)
-        {
-            try
-            {
-                var response = await _httpClient.GetAsync($"sessions/{session_id}");
-                Console.WriteLine($"Sessão id: {session_id}");
-                response.EnsureSuccessStatusCode();
-
-                var jsonResponse = await response.Content.ReadAsStringAsync();
-                var conversations = JsonSerializer.Deserialize<List<Conversation>>(jsonResponse, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-
-                return conversations ?? new List<Conversation>();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception: {ex.Message}");
-                return null;
             }
         }
     }

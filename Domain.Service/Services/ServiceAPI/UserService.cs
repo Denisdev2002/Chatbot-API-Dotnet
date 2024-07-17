@@ -16,7 +16,10 @@ namespace Domain.Service.Services.ServiceApi
         private readonly HashPasswordService _hashPassword;
         private readonly JwtTokenServiceAPI _jwtTokenService;
 
-        public UserService(IUserRepository userRepository, ILogger<UserService> logger, HashPasswordService hashPassword, JwtTokenServiceAPI jwtTokenService)
+        public UserService(IUserRepository userRepository, 
+            ILogger<UserService> logger, 
+            HashPasswordService hashPassword, 
+            JwtTokenServiceAPI jwtTokenService)
         {
             _userRepository = userRepository;
             _logger = logger;

@@ -12,7 +12,11 @@ namespace Infra.Repositories
         private readonly ISessionRepository _sessionRepository;
         private readonly ILogger<ConversationRepository> _logger;
 
-        public ConversationRepository(ContextDatabase context, ILogger<ConversationRepository> logger, ISessionRepository sessionrepository)
+        public ConversationRepository(
+            ContextDatabase context, 
+            ILogger<ConversationRepository> logger, 
+            ISessionRepository sessionrepository
+            )
         {
             _context = context;
             _logger = logger;

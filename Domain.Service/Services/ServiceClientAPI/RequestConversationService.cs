@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Domain.ViewModel;
 
 namespace Domain.Service.Services.ServiceApiExternal
 {

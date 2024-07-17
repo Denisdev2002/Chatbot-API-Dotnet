@@ -17,7 +17,9 @@ namespace Domain.Service.Services.ServiceJwt
         private readonly ILogger<JwtTokenServiceAPI> _logger;
         private readonly IConfiguration _configuration;
 
-        public JwtTokenServiceAPI(ILogger<JwtTokenServiceAPI> logger, IConfiguration configuration)
+        public JwtTokenServiceAPI(ILogger<JwtTokenServiceAPI> logger, 
+            IConfiguration configuration
+            )
         {
             _logger = logger;
             _configuration = configuration;

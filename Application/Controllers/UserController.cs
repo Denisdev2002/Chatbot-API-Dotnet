@@ -1,10 +1,8 @@
 ﻿using Application.Service.Interfaces;
-using Domain.Entities;
 using Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace Application.api.Controllers
 {
@@ -127,8 +125,8 @@ namespace Application.api.Controllers
                 return BadRequest("Email ou senha incorretos.");
             }
         }
-        
-        [AllowAnonymous]
+
+        [Authorize(Roles = "Admin")]
         [HttpGet("Email")]
         public async Task<IActionResult> GetUserByEmail(string email)
         {

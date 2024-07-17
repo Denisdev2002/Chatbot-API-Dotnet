@@ -11,6 +11,7 @@ namespace Domain.Entities
         public string? Id { get; set; }
         public string? text { get; set; }
         public string? session_id { get; set; }
+        public string? user_type { get; set; }
         [JsonIgnore]
         [ForeignKey("Session")]
         public string? IdSession { get; set; }

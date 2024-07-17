@@ -5,7 +5,7 @@ namespace Domain.Service.Interfaces
 {
     public interface IQuestionService
     {
-        Task ToAsk(string idQuestion);
+        Task<Conversation> ToAsk(string idQuestion);
         Task<List<Question>> GetQuestions();
         Task<Question> GetQuestionById(string id);
         Task<Question> GetQuestionByIdSession(string id);

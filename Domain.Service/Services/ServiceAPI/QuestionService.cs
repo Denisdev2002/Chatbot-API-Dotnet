@@ -15,21 +15,24 @@ namespace Domain.Service.Services.ServiceApi
         private readonly IConversationRepository _conversationRepository;
         private readonly ILogger<QuestionService> _logger;
         private readonly ISessionRepository _sessionRepository;
+        private readonly IUserRepository _userRepository;
 
         public QuestionService(RequestConversationService requestConversation,
             IQuestionRepository questionRepository,
             IConversationRepository conversationRepository,
             ILogger<QuestionService> logger,
-            ISessionRepository sessionRepository)
+            ISessionRepository sessionRepository,
+            IUserRepository userRepository)
         {
             _requestConversation = requestConversation;
             _questionRepository = questionRepository;
             _conversationRepository = conversationRepository;
             _logger = logger;
             _sessionRepository = sessionRepository;
+            _userRepository = userRepository;
         }
 
-        public async Task ToAsk(string idQuestion)
+        public async Task<Conversation> ToAsk(string idQuestion)
         {
             try
             {
@@ -60,20 +63,20 @@ namespace Domain.Service.Services.ServiceApi
                         ResponseId = conversation.ResponseId,
                         Result = conversation.Response.Result,
                         Sources = new List<Source>
-                {
-                    new Source
-                    {
-                        SourceId = Guid.NewGuid().ToString(),
-                        SourceDocument = conversation.Response.Sources[0].SourceDocument,
-                        PageDocument = conversation.Response.Sources[0].PageDocument
-                    }
-                }
+                        {
+                            new Source
+                            {
+                                SourceId = Guid.NewGuid().ToString(),
+                                SourceDocument = conversation.Response.Sources[0].SourceDocument,
+                                PageDocument = conversation.Response.Sources[0].PageDocument
+                            }
+                        }
                     }
                 };
 
                 Console.WriteLine("Session Id : " + conversation.SessionId);
 
-                if (insertConversation.ResponseId != null)
+                if (insertConversation.ResponseId == null)
                 {
                     insertConversation.ResponseId = insertConversation.Response.ResponseId;
                 }
@@ -82,6 +85,7 @@ namespace Domain.Service.Services.ServiceApi
                 await _conversationRepository.AddConversationAsync(insertConversation.IdSession, insertConversation);
                 await _questionRepository.UpdateQuestionAsync(question);
                 Console.WriteLine($"Conversa {conversation.Id} inserida.");
+                return insertConversation;
             }
             catch (Exception ex)
             {
@@ -121,14 +125,19 @@ namespace Domain.Service.Services.ServiceApi
                 {
                     throw new Exception("Sessão não encontrada.");
                 }
-
-
+                var user = await _userRepository.GetUserByEmailAsync(session.EmailUser);
+                if (user == null)
+                {
+                    throw new Exception("User não encontrado.");
+                }
+                var userType = user.Role == 0 ? "Admin" : "User";
                 var question = new Question
                 {
                     Id = Guid.NewGuid().ToString(),
                     IdSession = questionViewModel.IdSession,
                     text = questionViewModel.Text,
-                    session_id = questionViewModel.Session_id,
+                    session_id = questionViewModel.Session_id, 
+                    user_type = userType
                 };
 
                 await _questionRepository.InsertQuestionAsync(question);
