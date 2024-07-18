@@ -35,10 +35,10 @@ namespace Application.Service.Application
             return await _questionService.GetQuestions();
         }
 
-        public async Task InsertQuestion(QuestionViewModel questionViewModel)
+        public async Task<Question> InsertQuestion(QuestionViewModel questionViewModel)
         {
             // tratar objeto null
-            await _questionService.InsertQuestion(questionViewModel);
+            return await _questionService.InsertQuestion(questionViewModel);
         }
 
         public async Task ToAsk(string idQuestion)

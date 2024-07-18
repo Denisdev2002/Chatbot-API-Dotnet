@@ -9,7 +9,7 @@ namespace Application.Service.Interfaces
         Task<List<Question>> GetQuestions();
         Task<Question> GetQuestionById(string id);
         Task<Question> GetQuestionByIdSession(string id);
-        Task InsertQuestion(QuestionViewModel questionViewModel);
+        Task<Question> InsertQuestion(QuestionViewModel questionViewModel);
         Task UpdateQuestion(string id, QuestionViewModel questionViewModel);
         Task DeleteQuestion(string id);
     }

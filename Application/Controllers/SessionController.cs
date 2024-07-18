@@ -50,8 +50,8 @@ namespace Application.API.Controllers
         {
             try
             {
-                await _sessionApplication.InsertSession(sessionViewModel);
-                return Ok("Sessão inserida com sucesso!");
+                var session = await _sessionApplication.InsertSession(sessionViewModel);
+                return Ok(session);
             }
             catch (UnauthorizedAccessException)
             {

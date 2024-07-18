@@ -29,7 +29,7 @@ namespace Domain.Service.Service.ServiceAPI
             return await _sessionRepository.GetSessionsAsync();
         }
 
-        public async Task CreateSessionAsync(SessionViewModel sessionViewModel)
+        public async Task<Session> CreateSessionAsync(SessionViewModel sessionViewModel)
         {
             if (sessionViewModel == null)
             {
@@ -53,6 +53,7 @@ namespace Domain.Service.Service.ServiceAPI
                 IsActive = true
             };
             await _sessionRepository.InsertSessionAsync(session);
+            return session;
         }
 
         public async Task DeleteSessionByIdAsync(string sessionId)

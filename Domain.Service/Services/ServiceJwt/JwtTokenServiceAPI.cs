@@ -70,7 +70,7 @@ namespace Domain.Service.Services.ServiceJwt
             };
 
             var role = user.Role == 0 ? "Admin" : "User";
-            claims.Add(new Claim(ClaimTypes.Role, role));
+            claims.Add(new Claim(ClaimTypes.Role, role) ?? throw new ArgumentNullException(nameof(user.Role)));
 
             return claims;
         }

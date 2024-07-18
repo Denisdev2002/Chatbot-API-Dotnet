@@ -62,8 +62,8 @@ namespace Application.api.Controllers
         {
             try
             {
-                await _questionApplication.InsertQuestion(questionViewModel);
-                return Ok("Question inserida com sucesso!");
+                var question = await _questionApplication.InsertQuestion(questionViewModel);
+                return Ok(question);
             }
             catch (UnauthorizedAccessException)
             {

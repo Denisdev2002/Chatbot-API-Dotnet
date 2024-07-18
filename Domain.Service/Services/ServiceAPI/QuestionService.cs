@@ -108,7 +108,7 @@ namespace Domain.Service.Services.ServiceApi
             return await _questionRepository.GetQuestionByIdSessionAsync(id);
         }
 
-        public async Task InsertQuestion(QuestionViewModel questionViewModel)
+        public async Task<Question> InsertQuestion(QuestionViewModel questionViewModel)
         {
             try
             {
@@ -141,6 +141,7 @@ namespace Domain.Service.Services.ServiceApi
                 };
 
                 await _questionRepository.InsertQuestionAsync(question);
+                return question;
             }
             catch (Exception ex)
             {

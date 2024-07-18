@@ -21,9 +21,9 @@ namespace Application.Service.Application
             return await _sessionService.GetSessionsAsync();
         }
 
-        public async Task InsertSession(SessionViewModel sessionViewModel)
+        public async Task<Session> InsertSession(SessionViewModel sessionViewModel)
         {
-            await _sessionService.CreateSessionAsync(sessionViewModel);
+            return await _sessionService.CreateSessionAsync(sessionViewModel);
         }
 
         public async Task UpdateSession(string session, SessionViewModel sessionViewModel)

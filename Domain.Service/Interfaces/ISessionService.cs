@@ -6,7 +6,7 @@ namespace Domain.Service.Interfaces
     public interface ISessionService
     {
         Task<List<Session>> GetSessionsAsync();
-        Task CreateSessionAsync(SessionViewModel sessionViewModel);
+        Task<Session> CreateSessionAsync(SessionViewModel sessionViewModel);
         Task UpdateSessionAsync(string id, SessionViewModel sessioViewModel);
         Task DeleteSessionByIdAsync(string sessionId);
         Task<Session> GetSessionByIdAsync(string id);
