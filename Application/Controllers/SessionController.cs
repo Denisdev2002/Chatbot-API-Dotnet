@@ -1,13 +1,8 @@
 ﻿using Application.Service.Interfaces;
-using Domain.Entities;
-using Domain.Entities.DataTransferObject;
 using Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace Application.API.Controllers
 {
@@ -24,7 +19,7 @@ namespace Application.API.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetSessions()
         {
@@ -44,7 +39,7 @@ namespace Application.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateSession([FromBody] SessionViewModel sessionViewModel)
         {
@@ -64,7 +59,7 @@ namespace Application.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSession(string id, [FromBody] SessionViewModel sessionViewModel)
         {
@@ -84,7 +79,7 @@ namespace Application.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSession(string id)
         {
@@ -104,7 +99,27 @@ namespace Application.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
+        [HttpPost("external")]
+        public async Task<IActionResult> DeleteSessionExternal(string id)
+        {
+            try
+            {
+                await _sessionApplication.DeleteSessionIdExternal(id);
+                return Ok($"Sessão {id} excluída com sucesso!");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Ocorreu um erro ao excluir a sessão com ID: {id}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        //[Authorize]
         [HttpGet("session/{id}")]
         public async Task<IActionResult> GetSessionById(string id)
         {
@@ -128,7 +143,7 @@ namespace Application.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("session/user/{email}")]
         public async Task<IActionResult> GetSessionByUser(string email)
         {
@@ -152,7 +167,7 @@ namespace Application.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPut("{id}/activate")]
         public async Task<IActionResult> ActivateSession(string id)
         {
@@ -172,7 +187,7 @@ namespace Application.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPut("{id}/deactivate")]
         public async Task<IActionResult> DeactivateSession(string id)
         {

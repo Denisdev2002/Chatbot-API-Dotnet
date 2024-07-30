@@ -19,114 +19,29 @@ namespace Application.api.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpGet]
-        public async Task<IActionResult> GetUsers()
-        {
-            try
-            {
-                var users = await _userApplication.GetUsersAsync();
-                return Ok(users);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Ocorreu um erro ao obter os usuários.");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao obter os usuários.");
-            }
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public async Task<IActionResult> InsertUser([FromBody] UserViewModel userViewModel)
-        {
-            try
-            {
-                await _userApplication.InsertUserAsync(userViewModel);
-                return Ok(userViewModel);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpPut("{email}")]
-        public async Task<IActionResult> UpdateUser(string email, [FromBody] UserViewModel userViewModel)
-        {
-            try
-            {
-                var existingUser = await _userApplication.GetUserByEmailAsync(email);
-                if (existingUser == null)
-                {
-                    return NotFound("Usuário não encontrado.");
-                }
-
-                await _userApplication.UpdateUserAsync(email, userViewModel);
-                return NoContent();
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Ocorreu um erro ao atualizar o usuário com email: {email}");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao atualizar o usuário.");
-            }
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpDelete("{email}")]
-        public async Task<IActionResult> DeleteUser(string email)
-        {
-            try
-            {
-                var existingUser = await _userApplication.GetUserByEmailAsync(email);
-                if (existingUser == null)
-                {
-                    return NotFound("Usuário não encontrado.");
-                }
-
-                await _userApplication.DeleteUserAsync(email);
-                return NoContent();
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Ocorreu um erro ao deletar o usuário com email: {email}");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao deletar o usuário.");
-            }
-        }
-
         [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+        public async Task<IActionResult> Login([FromBody] LoginViewModel loginViewModel)
         {
             try
             {
-                var token = await _userApplication.LoginAsync(loginViewModel);
-                return Ok(token);
+                var tokenDto = await _userApplication.LoginAsync(loginViewModel);
+                if (tokenDto == null || string.IsNullOrEmpty(tokenDto.AccessToken))
+                {
+                    return Unauthorized("Failed to obtain token.");
+                }
+
+                return Ok(tokenDto);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocorreu um erro ao fazer login.");
-                return BadRequest("Email ou senha incorretos.");
+                _logger.LogError(ex, "An error occurred while logging in.");
+                return BadRequest("Incorrect email or password.");
             }
         }
 
-        [Authorize(Roles = "Admin")]
+
+        //[Authorize(Roles = "Admin")]
         [HttpGet("Email")]
         public async Task<IActionResult> GetUserByEmail(string email)
         {
@@ -135,14 +50,14 @@ namespace Application.api.Controllers
                 var user = await _userApplication.GetUserByEmailAsync(email);
                 if (user == null)
                 {
-                    return NotFound("Usuário não encontrado.");
+                    return NotFound("User not found.");
                 }
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Ocorreu um erro ao buscar usuário com o email: {email}");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao buscar o usuário.");
+                _logger.LogError(ex, $"There was an error when searching for user with email: {email}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, "There was an error when searching for the user.");
             }
         }
     }

@@ -21,14 +21,14 @@ namespace Application.api.Controllers
 
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("toask/{idQuestion}")]
         public async Task<IActionResult> ToAskForModel(string idQuestion)
         {
             try
             {
-                await _questionApplication.ToAsk(idQuestion);
-                return Ok();
+                var response = await _questionApplication.ToAsk(idQuestion);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace Application.api.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetQuestions()
         {
@@ -56,7 +56,7 @@ namespace Application.api.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateQuestion([FromBody] QuestionViewModel questionViewModel)
         {
@@ -76,7 +76,7 @@ namespace Application.api.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateQuestion(string id, [FromBody] QuestionViewModel questionViewModel)
         {
@@ -98,7 +98,7 @@ namespace Application.api.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteQuestion(string id)
         {
@@ -118,7 +118,7 @@ namespace Application.api.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("question/{id}")]
         public async Task<IActionResult> GetQuestionById(string id)
         {
@@ -142,7 +142,7 @@ namespace Application.api.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("question/session/{idSession}")]
         public async Task<IActionResult> GetQuestionIdSession(string idSession)
         {

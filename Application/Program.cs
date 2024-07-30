@@ -25,9 +25,10 @@ var configuration = new ConfigurationBuilder()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", builder =>
-        builder.WithOrigins("*")
-               .AllowAnyMethod()
-               .AllowAnyHeader());
+    builder.WithOrigins("*") 
+           .AllowAnyMethod() 
+           .AllowAnyHeader());
+
 });
 
 var secret = configuration["Jwt:Key"];
@@ -35,7 +36,7 @@ var key = Encoding.ASCII.GetBytes(secret);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = "https://localhost:7248";
+        options.Authority = "http://192.168.10.40:92";
         options.RequireHttpsMetadata = false;
         options.SaveToken = true;
         options.TokenValidationParameters = new TokenValidationParameters
@@ -109,9 +110,9 @@ builder.Services.AddScoped<IConversationService, ConversationService>();
 builder.Services.AddScoped<IConversationApplication, ConversationApplication>();
 
 builder.Services.AddScoped<RequestConversationService>();
-builder.Services.AddScoped<JwtTokenServiceAPI>();
+//builder.Services.AddScoped<JwtTokenServiceAPI>();
 builder.Services.AddScoped<HashPasswordService>();
-//builder.Services.AddScoped<RequestSessionService>();
+builder.Services.AddScoped<RequestSessionService>();
 builder.Services.AddScoped<ConnectClientService>();
 
 builder.Services.AddScoped<ContextDatabase>();

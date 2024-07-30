@@ -4,7 +4,9 @@ using Domain.Service.Interfaces;
 using Domain.Service.Services.ServiceJwt;
 using Domain.ViewModel;
 using Infra.Interfaces;
+using Infra.Repositories;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 
 namespace Domain.Service.Services.ServiceApi
@@ -14,74 +16,20 @@ namespace Domain.Service.Services.ServiceApi
         private readonly IUserRepository _userRepository;
         private readonly ILogger<UserService> _logger;
         private readonly HashPasswordService _hashPassword;
-        private readonly JwtTokenServiceAPI _jwtTokenService;
+        private readonly RequestSessionService _requestSessionService;
 
         public UserService(IUserRepository userRepository, 
             ILogger<UserService> logger, 
             HashPasswordService hashPassword, 
-            JwtTokenServiceAPI jwtTokenService)
+            RequestSessionService requestSessionService
+            )
         {
             _userRepository = userRepository;
             _logger = logger;
             _hashPassword = hashPassword;
-            _jwtTokenService = jwtTokenService;
+   
+            _requestSessionService = requestSessionService;
         }
-
-        public async Task<List<User>> GetUsersAsync()
-        {
-            var users = await _userRepository.GetUsersAsync();
-            return users.Select(user => new User
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                Email = user.Email,
-                PasswordHash = user.PasswordHash
-            }).ToList();
-        }
-
-        public async Task InsertUserAsync(UserViewModel userViewModel)
-        {
-            var user = new User
-            {
-                Id = Guid.NewGuid().ToString(),
-                UserName = userViewModel.Name,
-                Email = userViewModel.Email,
-                NormalizedEmail = userViewModel.Email,
-                PhoneNumber = userViewModel.Number,
-                Role = userViewModel.Role,
-                PasswordHash = _hashPassword.Password(userViewModel.Password)
-            };
-            await _userRepository.InsertUserAsync(user);
-        }
-
-
-        public async Task UpdateUserAsync(string email, UserViewModel userViewModel)
-        {
-            var originUser = await _userRepository.GetUserByEmailAsync(email);
-            if (originUser == null)
-                throw new Exception("Usuário não encontrado.");
-
-            // Hash da senha antes de atualizar
-            originUser.PasswordHash = _hashPassword.Password(userViewModel.Password);
-
-            originUser.UserName = userViewModel.Name;
-            originUser.Email = userViewModel.Email;
-            originUser.PasswordHash = userViewModel.Password;
-            originUser.PhoneNumber = userViewModel.Number;
-
-            await _userRepository.UpdateUserAsync(originUser);
-        }
-
-
-        public async Task DeleteUserAsync(string email)
-        {
-            var originUser = await _userRepository.GetUserByEmailAsync(email);
-            if (originUser == null)
-                throw new Exception("Usuário não encontrado.");
-
-            await _userRepository.DeleteUserAsync(originUser);
-        }
-
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
@@ -92,20 +40,25 @@ namespace Domain.Service.Services.ServiceApi
         {
             try
             {
-                _logger.LogInformation("Login attempt with email: {email}", loginViewModel.Email);
+                if (loginViewModel.login.IsNullOrEmpty())
+                {
+                    _logger.LogInformation($"Incorrect email : {loginViewModel.login}");
 
-                var user = await _userRepository.GetUserByEmailAsync(loginViewModel.Email);
+                }
+                if (loginViewModel.senha.IsNullOrEmpty()) 
+                {
+                    _logger.LogInformation($"Incorrect password : {loginViewModel.senha}");
+                    
+                }
+                Console.WriteLine($"Email : {loginViewModel.login}\nPassword : {loginViewModel.senha}");
+
+                var user = await _requestSessionService.LoginIasApi(loginViewModel.login, loginViewModel.senha);
                 if (user == null) throw new Exception("Usuário inexistente.");
 
-                _logger.LogInformation("User found: {userId}", user.Id);
+                _logger.LogInformation($"User found: { user}");
 
-                if (!_hashPassword.VerifyPassword(loginViewModel.Password, user.PasswordHash))
-                    throw new InvalidOperationException("Senha incorreta.");
-
-                _logger.LogInformation("Password verified successfully for user: {userId}", user.Id);
-
-                var token = _jwtTokenService.CreateToken(user);
-                return token;
+                
+                return user;
             }
             catch (Exception ex)
             {

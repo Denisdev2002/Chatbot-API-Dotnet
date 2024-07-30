@@ -41,9 +41,10 @@ namespace Application.Service.Application
             return await _questionService.InsertQuestion(questionViewModel);
         }
 
-        public async Task ToAsk(string idQuestion)
+        public async Task<Conversation> ToAsk(string idQuestion)
         {
-            await _questionService.ToAsk(idQuestion);
+            var response = await _questionService.ToAsk(idQuestion);
+            return response;
         }
 
         public async Task UpdateQuestion(string id, QuestionViewModel questionViewModel)

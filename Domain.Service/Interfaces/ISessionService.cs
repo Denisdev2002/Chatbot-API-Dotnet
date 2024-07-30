@@ -9,6 +9,7 @@ namespace Domain.Service.Interfaces
         Task<Session> CreateSessionAsync(SessionViewModel sessionViewModel);
         Task UpdateSessionAsync(string id, SessionViewModel sessioViewModel);
         Task DeleteSessionByIdAsync(string sessionId);
+        Task DeleteSessionIdExternal(string sessionId);
         Task<Session> GetSessionByIdAsync(string id);
         Task<List<Session>> GetSessionByEmailAsync(string id);
         Task ActivateSessionAsync(string sessionId);

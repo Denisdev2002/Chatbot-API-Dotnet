@@ -125,19 +125,14 @@ namespace Domain.Service.Services.ServiceApi
                 {
                     throw new Exception("Sessão não encontrada.");
                 }
-                var user = await _userRepository.GetUserByEmailAsync(session.EmailUser);
-                if (user == null)
-                {
-                    throw new Exception("User não encontrado.");
-                }
-                var userType = user.Role == 0 ? "Admin" : "User";
+      
                 var question = new Question
                 {
                     Id = Guid.NewGuid().ToString(),
                     IdSession = questionViewModel.IdSession,
                     text = questionViewModel.Text,
                     session_id = questionViewModel.Session_id, 
-                    user_type = userType
+                    user_type = questionViewModel.User_type
                 };
 
                 await _questionRepository.InsertQuestionAsync(question);

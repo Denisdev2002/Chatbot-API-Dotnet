@@ -4,11 +4,11 @@ namespace Domain.ViewModel
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "O e-mail é obrigatório.")]
-        [EmailAddress(ErrorMessage = "O e-mail fornecido não é válido.")]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "Email is mandatory.")]
+        [EmailAddress(ErrorMessage = "The email provided is not valid.")]
+        public string login { get; set; }
 
-        [Required(ErrorMessage = "A senha é obrigatória.")]
-        public string Password { get; set; }
+        [Required(ErrorMessage = "Password is mandatory.")]
+        public string senha { get; set; }
     }
 }

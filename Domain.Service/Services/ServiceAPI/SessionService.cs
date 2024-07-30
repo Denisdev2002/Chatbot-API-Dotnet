@@ -1,9 +1,10 @@
 ﻿using Domain.Entities;
 using Domain.Service.Interfaces;
+using Domain.Service.Services.ServiceApiExternal;
 using Domain.ViewModel;
 using Infra.Interfaces;
-using Infra.Repositories;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Domain.Service.Service.ServiceAPI
 {
@@ -12,15 +13,18 @@ namespace Domain.Service.Service.ServiceAPI
         private readonly ISessionRepository _sessionRepository;
         private readonly ILogger<SessionService> _logger;
         private readonly IUserRepository _userRepository;
+        private readonly RequestConversationService _requestConversationService;
 
         public SessionService(
             ISessionRepository sessionRepository,
             ILogger<SessionService> logger,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            RequestConversationService requestConversationService)
         {
             _sessionRepository = sessionRepository;
             _logger = logger;
             _userRepository = userRepository;
+            _requestConversationService = requestConversationService;
 
         }
 
@@ -35,22 +39,17 @@ namespace Domain.Service.Service.ServiceAPI
             {
                 throw new ArgumentNullException(nameof(sessionViewModel), "A sessão não pode ser nula.");
             }
-            if (sessionViewModel.EmailUser == null)
+            Console.WriteLine("Sessão enviada : " + sessionViewModel);
+            if (sessionViewModel.EmailUser.IsNullOrEmpty())
             {
+                Console.WriteLine("Usuáio : "+ sessionViewModel.EmailUser);
                 throw new ArgumentNullException(nameof(sessionViewModel.EmailUser), "Usuário não pode ser nula.");
-            }
-
-            var user = _userRepository.GetUserByEmailAsync(sessionViewModel.EmailUser);
-            if (user == null)
-            {
-                throw new ArgumentNullException(nameof(user), "User não pode ser nulo.");
             }
 
             var session = new Session
             {
-                IdSession = Guid.NewGuid().ToString(),
-                EmailUser = user.Result.Email,
-                IsActive = true
+                EmailUser = sessionViewModel.EmailUser
+
             };
             await _sessionRepository.InsertSessionAsync(session);
             return session;
@@ -79,12 +78,28 @@ namespace Domain.Service.Service.ServiceAPI
             }
         }
 
+        public async Task DeleteSessionIdExternal(string sessionId)
+        {
+            try
+            {
+                await _requestConversationService.DeleteSession(sessionId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine(ex.InnerException.Message);
+                }
+                throw;
+            }
+        }
         public async Task UpdateSessionAsync(string id, SessionViewModel sessionViewModel)
         {
             var originSession = await _sessionRepository.GetSessionBySessionIdAsync(id);
             if (originSession == null)
                 throw new Exception("Sessão não existe");
-            originSession.IdSession = sessionViewModel.Id;
+            //originSession.IdSession = sessionViewModel.Id;
             originSession.EmailUser = sessionViewModel.EmailUser;
 
             await _sessionRepository.UpdateSessionAsync(originSession);

@@ -1,11 +1,10 @@
-﻿
+﻿using Newtonsoft.Json;
+
 namespace Domain.Entities.DataTransferObject
 {
     public class TokenDto
     {
-        public string? Email { get; set; }
-        public string? Name { get; set; }
-        public string? Token { get; set; }
-
+        [JsonProperty("access_token")]
+        public string? AccessToken { get; set; }
     }
 }

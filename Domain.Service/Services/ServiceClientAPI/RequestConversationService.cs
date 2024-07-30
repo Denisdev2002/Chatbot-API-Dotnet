@@ -19,13 +19,13 @@ namespace Domain.Service.Services.ServiceApiExternal
         }
 
 
-        public async Task DeleteSession(Session session)
+        public async Task DeleteSession(string session)
         {
             try
             {
                 var webSocketClient = new ConnectClientService();
-                await webSocketClient.DeleteSession(session.Question[0].session_id);
-                Console.WriteLine($"Sessão {session.IdSession} excluída!");
+                await webSocketClient.DeleteSession(session);
+                Console.WriteLine($"Sessão {session} excluída!");
             }
             catch (Exception ex)
             {

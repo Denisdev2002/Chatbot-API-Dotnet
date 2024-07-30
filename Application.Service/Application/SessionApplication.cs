@@ -54,6 +54,11 @@ namespace Application.Service.Application
         {
             await _sessionService.DeactivateSessionAsync(sessionId);
         }
+
+        public async Task DeleteSessionIdExternal(string sessionId)
+        {
+            await _sessionService.DeleteSessionIdExternal(sessionId);
+        }
     }
 
 }
