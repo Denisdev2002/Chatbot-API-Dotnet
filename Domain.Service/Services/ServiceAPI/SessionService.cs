@@ -25,7 +25,6 @@ namespace Domain.Service.Service.ServiceAPI
             _logger = logger;
             _userRepository = userRepository;
             _requestConversationService = requestConversationService;
-
         }
 
         public async Task<List<Session>> GetSessionsAsync()
@@ -48,6 +47,7 @@ namespace Domain.Service.Service.ServiceAPI
 
             var session = new Session
             {
+                IdSession = Guid.NewGuid().ToString(),
                 EmailUser = sessionViewModel.EmailUser
 
             };

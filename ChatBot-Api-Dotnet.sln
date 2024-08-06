@@ -5,19 +5,21 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D59AFC8A-F15B-4AFA-B89E-85333894B8E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{C19F3EAE-C4A4-4453-9F80-41334938FABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{C19F3EAE-C4A4-4453-9F80-41334938FABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Service", "Application.Service\Application.Service.csproj", "{557C90EF-5621-4A30-B1BC-0334D9C71516}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Service", "Application.Service\Application.Service.csproj", "{557C90EF-5621-4A30-B1BC-0334D9C71516}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{97630B88-A0DE-454A-A213-719026C111C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{AD6A44AB-0DFA-4DD4-8E3E-BD3AE777D185}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{AD6A44AB-0DFA-4DD4-8E3E-BD3AE777D185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Service", "Domain.Service\Domain.Service.csproj", "{C0CCD098-95E3-4135-963F-EB25A4C69FC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Service", "Domain.Service\Domain.Service.csproj", "{C0CCD098-95E3-4135-963F-EB25A4C69FC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{492F792A-DDC7-4235-B17C-5A14C903D48E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{6D95A119-C9CE-40F5-8976-D1328FD8430F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{6D95A119-C9CE-40F5-8976-D1328FD8430F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B5ACF4DC-AB73-4197-8AEB-522BDD5F1AC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6D95A119-C9CE-40F5-8976-D1328FD8430F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D95A119-C9CE-40F5-8976-D1328FD8430F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D95A119-C9CE-40F5-8976-D1328FD8430F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5ACF4DC-AB73-4197-8AEB-522BDD5F1AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5ACF4DC-AB73-4197-8AEB-522BDD5F1AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5ACF4DC-AB73-4197-8AEB-522BDD5F1AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5ACF4DC-AB73-4197-8AEB-522BDD5F1AC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

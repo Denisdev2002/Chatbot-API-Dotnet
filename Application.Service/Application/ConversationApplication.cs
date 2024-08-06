@@ -17,9 +17,9 @@ namespace Application.Service.Application
             _conversationService = conversationService;
         }
 
-        public async Task CreateConversation(ConversationViewModel conversationViewModel)
+        public async Task<Conversation> CreateConversation(ConversationViewModel conversationViewModel)
         {
-            await _conversationService.InsertConversation(conversationViewModel);
+            return await _conversationService.InsertConversation(conversationViewModel);
         }
 
         public async Task DeleteConversation(string conversationId)

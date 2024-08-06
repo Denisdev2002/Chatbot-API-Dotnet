@@ -157,6 +157,9 @@ namespace Domain.Service.Services.ServiceApi
                 }
                 originQuestion.text = questionViewModel.Text;
                 Console.WriteLine($"Texto {originQuestion.text} atualizado para {questionViewModel.Text}.");
+                originQuestion.user_type = questionViewModel.User_type;
+                Console.WriteLine($"Tipo do usuário {originQuestion.user_type} atualizado para {questionViewModel.User_type}.");
+
                 await _questionRepository.UpdateQuestionAsync(originQuestion);
 
             }

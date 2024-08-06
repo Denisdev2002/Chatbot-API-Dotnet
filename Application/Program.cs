@@ -14,6 +14,13 @@ using Infra;
 using Domain.Service.Service.ServiceAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using StackExchange.Redis;
+using Domain.Service.Services.Cache.Interface;
+using Domain.Service.Services.Cache.ServiceCacheRedis;
+using Application.Service.Application.Cache;
+using Application.Service.Interface.Cache;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,10 +32,22 @@ var configuration = new ConfigurationBuilder()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", builder =>
-    builder.WithOrigins("*") 
-           .AllowAnyMethod() 
+    builder.WithOrigins("*")
+           .AllowAnyMethod()
            .AllowAnyHeader());
 
+});
+
+var redisConnectionString = configuration["Redis:ConnectionString"];
+if (string.IsNullOrEmpty(redisConnectionString))
+{
+    throw new InvalidOperationException("Redis connection string is not configured.");
+}
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = redisConnectionString;
+    options.InstanceName = configuration["Redis:InstanceName"];
 });
 
 var secret = configuration["Jwt:Key"];
@@ -36,7 +55,7 @@ var key = Encoding.ASCII.GetBytes(secret);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = "http://192.168.10.40:92";
+        options.Authority = configuration["Jwt:Authority"];
         options.RequireHttpsMetadata = false;
         options.SaveToken = true;
         options.TokenValidationParameters = new TokenValidationParameters
@@ -47,12 +66,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = configuration["Jwt:Issuer"],
             ValidAudience = configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+            IssuerSigningKey = new SymmetricSecurityKey(key)
         };
     });
 
 builder.Services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
-
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -60,7 +78,7 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
-        Description = "Please enter into field the word 'Bearer' following by space and JWT",
+        Description = "Please enter into field the word 'Bearer' followed by space and JWT",
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer"
@@ -82,14 +100,22 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddAntiforgery();
-builder.Services.AddControllers()
-               .AddNewtonsoftJson(options =>
-               {
-                   // Use the default property (Pascal) casing
-                   options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                   options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-               });
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+});
 
+//.AddJsonOptions(x =>
+//x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
+
+
+//JsonSerializerOptions options = new()
+//{
+//    ReferenceHandler = ReferenceHandler.IgnoreCycles,
+//    WriteIndented = true
+//};
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddProblemDetails();
 
@@ -109,17 +135,21 @@ builder.Services.AddScoped<IConversationRepository, ConversationRepository>();
 builder.Services.AddScoped<IConversationService, ConversationService>();
 builder.Services.AddScoped<IConversationApplication, ConversationApplication>();
 
+builder.Services.AddScoped<ICacheService, CacheService>();
+builder.Services.AddScoped<ICacheApplication, CacheApplication>();
+
+
 builder.Services.AddScoped<RequestConversationService>();
-//builder.Services.AddScoped<JwtTokenServiceAPI>();
 builder.Services.AddScoped<HashPasswordService>();
 builder.Services.AddScoped<RequestSessionService>();
 builder.Services.AddScoped<ConnectClientService>();
 
 builder.Services.AddScoped<ContextDatabase>();
 
+// Configuração do Redis para injeção de dependência
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnectionString));
 
 var app = builder.Build();
-
 
 if (app.Environment.IsDevelopment())
 {

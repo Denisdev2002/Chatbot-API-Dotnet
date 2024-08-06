@@ -116,6 +116,9 @@
               "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Application.Service.csproj": {
                 "projectPath": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Application.Service.csproj"
               },
+              "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\docker-compose.dcproj": {
+                "projectPath": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\docker-compose.dcproj"
+              },
               "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain\\Domain.csproj"
               }
@@ -153,6 +156,14 @@
               "target": "Package",
               "version": "[8.0.6, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.6, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -179,6 +190,21 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\docker-compose.dcproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\docker-compose.dcproj",
+        "projectName": "docker-compose",
+        "projectPath": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\docker-compose.dcproj",
+        "frameworks": {
+          "unsupported": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "unsupported": {}
       }
     },
     "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Domain.Service.csproj": {

@@ -9,7 +9,7 @@ namespace Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [JsonIgnore]
-        public string IdSession { get; set; } = Guid.NewGuid().ToString();
+        public string? IdSession { get; set; }
         public string? EmailUser { get; set; }
         public List<Question>? Question { get; set; }
         public List<Conversation>? Conversations { get; set; }

@@ -2,21 +2,24 @@
 using Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using StackExchange.Redis;
 using System.Net;
 
-namespace Application.API.Controllers
+namespace Application.api.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class SessionController : ControllerBase
     {
         private readonly ISessionApplication _sessionApplication;
         private readonly ILogger<SessionController> _logger;
+        private readonly IDatabase _redis;
 
-        public SessionController(ISessionApplication sessionApplication, ILogger<SessionController> logger)
+        public SessionController(ISessionApplication sessionApplication, ILogger<SessionController> logger, IConnectionMultiplexer connectionMultiplexer)
         {
             _sessionApplication = sessionApplication;
             _logger = logger;
+            _redis = connectionMultiplexer.GetDatabase();
         }
 
         //[Authorize]
@@ -25,8 +28,28 @@ namespace Application.API.Controllers
         {
             try
             {
-                var sessions = await _sessionApplication.GetSessions();
-                return Ok(sessions);
+                var cacheKey = "allSessions";
+                var cachedSessions = await _redis.StringGetAsync("allSessions");
+                if (!cachedSessions.HasValue)
+                {
+                    _logger.LogInformation("Cache miss: {CacheKey}", cacheKey);
+                }
+                else
+                {
+                    _logger.LogInformation("Cache hit: {CacheKey}", cacheKey);
+                }
+
+                if (!cachedSessions.IsNullOrEmpty)
+                {
+                    var sessions = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<SessionViewModel>>(cachedSessions);
+                    return Ok(sessions);
+                }
+
+                var sessionsFromDb = await _sessionApplication.GetSessions();
+                var sessionsJson = System.Text.Json.JsonSerializer.Serialize(sessionsFromDb);
+                await _redis.StringSetAsync("allSessions", sessionsJson, TimeSpan.FromMinutes(10));
+
+                return Ok(sessionsFromDb);
             }
             catch (UnauthorizedAccessException)
             {
@@ -46,6 +69,10 @@ namespace Application.API.Controllers
             try
             {
                 var session = await _sessionApplication.InsertSession(sessionViewModel);
+
+                // Invalidate cache
+                await _redis.KeyDeleteAsync("allSessions");
+
                 return Ok(session);
             }
             catch (UnauthorizedAccessException)
@@ -54,7 +81,7 @@ namespace Application.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocorreu um erro ao inserir a sessão.");
+                _logger.LogError(ex, "Ocorreu um erro ao criar a sessão.");
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
@@ -66,6 +93,10 @@ namespace Application.API.Controllers
             try
             {
                 await _sessionApplication.UpdateSession(id, sessionViewModel);
+
+                // Invalidate cache
+                await _redis.KeyDeleteAsync("allSessions");
+
                 return NoContent();
             }
             catch (UnauthorizedAccessException)
@@ -74,7 +105,7 @@ namespace Application.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Ocorreu um erro ao atualizar a sessão com ID: {id}");
+                _logger.LogError(ex, $"Ocorreu um erro ao atualizar a sessão com Id: {id}");
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao atualizar a sessão.");
             }
         }
@@ -86,7 +117,11 @@ namespace Application.API.Controllers
             try
             {
                 await _sessionApplication.DeleteSessionId(id);
-                return Ok($"Sessão {id} excluída com sucesso!");
+
+                // Invalidate cache
+                await _redis.KeyDeleteAsync("allSessions");
+
+                return Ok($"Sessão com o id: {id} excluída com sucesso!");
             }
             catch (UnauthorizedAccessException)
             {
@@ -100,37 +135,28 @@ namespace Application.API.Controllers
         }
 
         //[Authorize]
-        [HttpPost("external")]
-        public async Task<IActionResult> DeleteSessionExternal(string id)
-        {
-            try
-            {
-                await _sessionApplication.DeleteSessionIdExternal(id);
-                return Ok($"Sessão {id} excluída com sucesso!");
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Ocorreu um erro ao excluir a sessão com ID: {id}");
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
-            }
-        }
-
-        //[Authorize]
-        [HttpGet("session/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSessionById(string id)
         {
             try
             {
-                var session = await _sessionApplication.GetSessionId(id);
-                if (session == null)
+                var cachedSession = await _redis.StringGetAsync($"session:{id}");
+                if (!cachedSession.IsNullOrEmpty)
                 {
-                    return NotFound($"Sessão com ID: {id} não encontrada.");
+                    var session = System.Text.Json.JsonSerializer.Deserialize<SessionViewModel>(cachedSession);
+                    return Ok(session);
                 }
-                return Ok(session);
+
+                var sessionFromDb = await _sessionApplication.GetSessionId(id);
+                if (sessionFromDb == null)
+                {
+                    return NotFound($"Sessão com Id: {id} não encontrada.");
+                }
+
+                var sessionJson = System.Text.Json.JsonSerializer.Serialize(sessionFromDb);
+                await _redis.StringSetAsync($"session:{id}", sessionJson, TimeSpan.FromMinutes(10));
+
+                return Ok(sessionFromDb);
             }
             catch (UnauthorizedAccessException)
             {
@@ -142,70 +168,5 @@ namespace Application.API.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao buscar a sessão.");
             }
         }
-
-        //[Authorize]
-        [HttpGet("session/user/{email}")]
-        public async Task<IActionResult> GetSessionByUser(string email)
-        {
-            try
-            {
-                var sessions = await _sessionApplication.GetSessionUser(email);
-                if (sessions == null)
-                {
-                    return NotFound($"Sessão com email: {email} não encontrada.");
-                }
-                return Ok(sessions);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Ocorreu um erro ao buscar a sessão com email: {email}");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao buscar a sessão.");
-            }
-        }
-
-        //[Authorize]
-        [HttpPut("{id}/activate")]
-        public async Task<IActionResult> ActivateSession(string id)
-        {
-            try
-            {
-                await _sessionApplication.ActivateSession(id);
-                return Ok($"Sessão {id} ativada com sucesso!");
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Ocorreu um erro ao ativar a sessão com ID: {id}");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao ativar a sessão.");
-            }
-        }
-
-        //[Authorize]
-        [HttpPut("{id}/deactivate")]
-        public async Task<IActionResult> DeactivateSession(string id)
-        {
-            try
-            {
-                await _sessionApplication.DeactivateSession(id);
-                return Ok($"Sessão {id} desativada com sucesso!");
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return StatusCode((int)HttpStatusCode.Forbidden, "Você não tem permissão para acessar este recurso.");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Ocorreu um erro ao desativar a sessão com ID: {id}");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao desativar a sessão.");
-            }
-        }
     }
-
 }

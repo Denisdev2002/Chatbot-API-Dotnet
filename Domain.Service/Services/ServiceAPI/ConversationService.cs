@@ -1,10 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Service.Interfaces;
-using Domain.Service.Services.ServiceApiExternal;
 using Domain.ViewModel;
 using Infra.Interfaces;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic;
 
 namespace Domain.Service.Service.ServiceAPI
 {
@@ -35,11 +33,11 @@ namespace Domain.Service.Service.ServiceAPI
             }
         }
 
-        public async Task InsertConversation(ConversationViewModel conversationViewModel)
+        public async Task<Conversation> InsertConversation(ConversationViewModel conversationViewModel)
         {
             try
             {
-                var question = _questionRepository.GetQuestionByIdSessionAsync(conversationViewModel.IdSession);
+                var question = await _questionRepository.GetQuestionByIdSessionAsync(conversationViewModel.IdSession);
                 if (question == null)
                 {
                     throw new Exception("Questão não encontrada.");
@@ -53,12 +51,13 @@ namespace Domain.Service.Service.ServiceAPI
                     ResponseId = conversationViewModel.ResponseId
 
                 };
-                await _conversationRepository.AddConversationAsync(conversation.SessionId, conversation);
                 Console.WriteLine($"Conversa {conversation.Id} inserida.");
+                return await _conversationRepository.AddConversationAsync(conversation.SessionId, conversation);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao inserir conversa.");
+                throw;
             }
         }
 
@@ -74,9 +73,8 @@ namespace Domain.Service.Service.ServiceAPI
 
                 originConversation.IdSession = conversationViewModel.IdSession;
 
-
-                await _conversationRepository.UpdateConversationAsync(originConversation);
                 Console.WriteLine($"Id da sessão {id} atualizada. para {conversationViewModel.IdSession}.");
+                await _conversationRepository.UpdateConversationAsync(originConversation);
             }
             catch (Exception ex)
             {

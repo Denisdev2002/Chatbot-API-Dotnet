@@ -2,6 +2,7 @@
 using Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using StackExchange.Redis;
 using System.Net;
 
 namespace Application.api.Controllers
@@ -12,11 +13,13 @@ namespace Application.api.Controllers
     {
         private readonly IUserApplication _userApplication;
         private readonly ILogger<UserController> _logger;
+        private readonly IDatabase _redis;
 
-        public UserController(IUserApplication userApplication, ILogger<UserController> logger)
+        public UserController(IUserApplication userApplication, ILogger<UserController> logger, IConnectionMultiplexer connectionMultiplexer)
         {
             _userApplication = userApplication;
             _logger = logger;
+            _redis = connectionMultiplexer.GetDatabase();
         }
 
         [AllowAnonymous]
@@ -30,7 +33,6 @@ namespace Application.api.Controllers
                 {
                     return Unauthorized("Failed to obtain token.");
                 }
-
                 return Ok(tokenDto);
             }
             catch (Exception ex)
@@ -40,18 +42,30 @@ namespace Application.api.Controllers
             }
         }
 
-
-        //[Authorize(Roles = "Admin")]
+        //[Authorize]
         [HttpGet("Email")]
         public async Task<IActionResult> GetUserByEmail(string email)
         {
             try
             {
+                // Check cache first
+                var cachedUser = await _redis.StringGetAsync(email);
+                if (!cachedUser.IsNullOrEmpty)
+                {
+                    return Ok(System.Text.Json.JsonSerializer.Deserialize<UserViewModel>(cachedUser));
+                }
+
+                // If not in cache, fetch from application layer
                 var user = await _userApplication.GetUserByEmailAsync(email);
                 if (user == null)
                 {
                     return NotFound("User not found.");
                 }
+
+                // Cache the result
+                var userJson = System.Text.Json.JsonSerializer.Serialize(user);
+                await _redis.StringSetAsync(email, userJson, TimeSpan.FromMinutes(10));
+
                 return Ok(user);
             }
             catch (Exception ex)
