@@ -2182,7 +2182,8 @@
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "8.0.6",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.6",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "8.0.6"
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "8.0.6",
+          "StackExchange.Redis": "2.7.27"
         },
         "compile": {
           "bin/placeholder/Domain.Service.dll": {}

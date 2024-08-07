@@ -15,13 +15,12 @@ namespace Application.api.Controllers
     {
         private readonly IQuestionApplication _questionApplication;
         private readonly ILogger<QuestionController> _logger;
-        private readonly IDatabase _redis;
 
-        public QuestionController(IQuestionApplication questionApplication, ILogger<QuestionController> logger, IConnectionMultiplexer connectionMultiplexer)
+        public QuestionController(IQuestionApplication questionApplication, ILogger<QuestionController> logger)
         {
             _questionApplication = questionApplication;
             _logger = logger;
-            _redis = connectionMultiplexer.GetDatabase();
+            
         }
 
         //[Authorize]
@@ -30,20 +29,11 @@ namespace Application.api.Controllers
         {
             try
             {
-                var cacheKey = $"question:ask:{idQuestion}";
-
-                var cachedResponse = await _redis.StringGetAsync(cacheKey);
-
-                if (!cachedResponse.IsNullOrEmpty)
-                {
-                    var response = Newtonsoft.Json.JsonConvert.DeserializeObject<string>(cachedResponse);
-                    return Ok(response);
-                }
 
                 var responseFromModel = await _questionApplication.ToAsk(idQuestion);
 
-                var responseJson = JsonConvert.SerializeObject(responseFromModel);
-                await _redis.StringSetAsync(cacheKey, responseJson, TimeSpan.FromMinutes(10));
+                //var responseJson = JsonConvert.SerializeObject(responseFromModel);
+                //await _redis.StringSetAsync(cacheKey, responseJson, TimeSpan.FromMinutes(10));
 
                 return Ok(responseFromModel);
             }
@@ -54,24 +44,13 @@ namespace Application.api.Controllers
             }
         }
 
-
         //[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetQuestions()
         {
             try
             {
-                // Check cache first
-                var cachedQuestions = await _redis.StringGetAsync("allQuestions");
-                if (!cachedQuestions.IsNullOrEmpty)
-                {
-                    var questions = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<QuestionViewModel>>(cachedQuestions);
-                    return Ok(questions);
-                }
                 var questionsFromDb = await _questionApplication.GetQuestions();
-                var questionsJson = System.Text.Json.JsonSerializer.Serialize(questionsFromDb);
-                await _redis.StringSetAsync("allQuestions", questionsJson, TimeSpan.FromMinutes(10));
-
                 return Ok(questionsFromDb);
             }
             catch (UnauthorizedAccessException)
@@ -92,10 +71,6 @@ namespace Application.api.Controllers
             try
             {
                 var question = await _questionApplication.InsertQuestion(questionViewModel);
-
-                // Invalidate cache
-                await _redis.KeyDeleteAsync("allQuestions");
-
                 return Ok(question);
             }
             catch (UnauthorizedAccessException)
@@ -115,11 +90,7 @@ namespace Application.api.Controllers
         {
             try
             {
-                await _questionApplication.UpdateQuestion(id, questionViewModel);
-
-                // Invalidate cache
-                await _redis.KeyDeleteAsync("allQuestions");
-
+                await _questionApplication.UpdateQuestion(id, questionViewModel);;
                 return NoContent();
             }
             catch (UnauthorizedAccessException)
@@ -140,10 +111,6 @@ namespace Application.api.Controllers
             try
             {
                 await _questionApplication.DeleteQuestion(id);
-
-                // Invalidate cache
-                await _redis.KeyDeleteAsync("allQuestions");
-
                 return Ok($"Questão com o id: {id} excluída com sucesso!");
             }
             catch (UnauthorizedAccessException)
@@ -163,22 +130,11 @@ namespace Application.api.Controllers
         {
             try
             {
-                var cachedQuestion = await _redis.StringGetAsync($"question:{id}");
-                if (!cachedQuestion.IsNullOrEmpty)
-                {
-                    var question = System.Text.Json.JsonSerializer.Deserialize<QuestionViewModel>(cachedQuestion);
-                    return Ok(question);
-                }
-
                 var questionFromDb = await _questionApplication.GetQuestionById(id);
                 if (questionFromDb == null)
                 {
                     return NotFound($"Questão com Id: {id} não encontrada.");
                 }
-
-                var questionJson = System.Text.Json.JsonSerializer.Serialize(questionFromDb);
-                await _redis.StringSetAsync($"question:{id}", questionJson, TimeSpan.FromMinutes(10));
-
                 return Ok(questionFromDb);
             }
             catch (UnauthorizedAccessException)
@@ -198,22 +154,11 @@ namespace Application.api.Controllers
         {
             try
             {
-                var cachedQuestions = await _redis.StringGetAsync($"session:{idSession}");
-                if (!cachedQuestions.IsNullOrEmpty)
-                {
-                    var questions = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<QuestionViewModel>>(cachedQuestions);
-                    return Ok(questions);
-                }
-
                 var questionsFromDb = await _questionApplication.GetQuestionByIdSession(idSession);
                 if (questionsFromDb == null)
                 {
                     return NotFound($"Questão com Id Session: {idSession} não encontrada.");
                 }
-
-                var questionsJson = System.Text.Json.JsonSerializer.Serialize(questionsFromDb);
-                await _redis.StringSetAsync($"session:{idSession}", questionsJson, TimeSpan.FromMinutes(10));
-
                 return Ok(questionsFromDb);
             }
             catch (UnauthorizedAccessException)

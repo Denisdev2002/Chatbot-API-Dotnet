@@ -30,20 +30,7 @@ namespace Application.Controllers
         {
             try
             {
-                var cacheKey = "all_conversations";
-                var cachedData = await _redis.StringGetAsync(cacheKey);
-
-                if (cachedData.HasValue)
-                {
-                    _logger.LogInformation("Cache hit for key: {CacheKey}", cacheKey);
-                    var conversations = JsonSerializer.Deserialize<IEnumerable<ConversationViewModel>>(cachedData);
-                    return Ok(conversations);
-                }
-
-                _logger.LogInformation("Cache miss for key: {CacheKey}", cacheKey);
                 var conversationsFromService = await _conversationApplication.GetAllConversations();
-                var serializedData = JsonSerializer.Serialize(conversationsFromService);
-                await _redis.StringSetAsync(cacheKey, serializedData, TimeSpan.FromHours(1));
                 return Ok(conversationsFromService);
             }
             catch (UnauthorizedAccessException)
@@ -63,9 +50,6 @@ namespace Application.Controllers
             try
             {
                 var conversation = await _conversationApplication.CreateConversation(conversationViewModel);
-
-                await UpdateConversationsCacheAsync();
-
                 return Ok("Conversa inserida com sucesso!");
             }
             catch (UnauthorizedAccessException)
@@ -85,10 +69,6 @@ namespace Application.Controllers
             try
             {
                 await _conversationApplication.UpdateConversation(id, conversationViewModel);
-
-                // Atualizar cache para garantir que os dados mais recentes sejam obtidos
-                await UpdateConversationsCacheAsync();
-
                 return NoContent();
             }
             catch (UnauthorizedAccessException)
@@ -108,10 +88,6 @@ namespace Application.Controllers
             try
             {
                 await _conversationApplication.DeleteConversation(id);
-
-                // Atualizar cache para garantir que os dados mais recentes sejam obtidos
-                await UpdateConversationsCacheAsync();
-
                 return Ok($"Conversa com o id: {id} excluída com sucesso!");
             }
             catch (UnauthorizedAccessException)
@@ -130,24 +106,11 @@ namespace Application.Controllers
         {
             try
             {
-                var cacheKey = $"conversation_{id}";
-                var cachedData = await _redis.StringGetAsync(cacheKey);
-
-                if (cachedData.HasValue)
-                {
-                    var conversation = JsonSerializer.Deserialize<ConversationViewModel>(cachedData);
-                    return Ok(conversation);
-                }
-
                 var conversationFromService = await _conversationApplication.GetByIdConversation(id);
                 if (conversationFromService == null)
                 {
                     return NotFound($"Conversation com Id: {id} não encontrada.");
                 }
-
-                var serializedData = JsonSerializer.Serialize(conversationFromService);
-                await _redis.StringSetAsync(cacheKey, serializedData, TimeSpan.FromHours(1));
-
                 return Ok(conversationFromService);
             }
             catch (UnauthorizedAccessException)
@@ -159,14 +122,6 @@ namespace Application.Controllers
                 _logger.LogError(ex, $"Ocorreu um erro ao buscar a conversa com ID: {id}");
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Ocorreu um erro ao buscar a conversa.");
             }
-        }
-
-        private async Task UpdateConversationsCacheAsync()
-        {
-            var cacheKey = "all_conversations";
-            var conversationsFromService = await _conversationApplication.GetAllConversations();
-            var serializedData = JsonSerializer.Serialize(conversationsFromService);
-            await _redis.StringSetAsync(cacheKey, serializedData, TimeSpan.FromHours(1));
         }
     }
 }

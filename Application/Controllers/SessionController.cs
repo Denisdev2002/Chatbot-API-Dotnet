@@ -28,27 +28,7 @@ namespace Application.api.Controllers
         {
             try
             {
-                var cacheKey = "allSessions";
-                var cachedSessions = await _redis.StringGetAsync("allSessions");
-                if (!cachedSessions.HasValue)
-                {
-                    _logger.LogInformation("Cache miss: {CacheKey}", cacheKey);
-                }
-                else
-                {
-                    _logger.LogInformation("Cache hit: {CacheKey}", cacheKey);
-                }
-
-                if (!cachedSessions.IsNullOrEmpty)
-                {
-                    var sessions = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<SessionViewModel>>(cachedSessions);
-                    return Ok(sessions);
-                }
-
                 var sessionsFromDb = await _sessionApplication.GetSessions();
-                var sessionsJson = System.Text.Json.JsonSerializer.Serialize(sessionsFromDb);
-                await _redis.StringSetAsync("allSessions", sessionsJson, TimeSpan.FromMinutes(10));
-
                 return Ok(sessionsFromDb);
             }
             catch (UnauthorizedAccessException)
@@ -69,10 +49,6 @@ namespace Application.api.Controllers
             try
             {
                 var session = await _sessionApplication.InsertSession(sessionViewModel);
-
-                // Invalidate cache
-                await _redis.KeyDeleteAsync("allSessions");
-
                 return Ok(session);
             }
             catch (UnauthorizedAccessException)
@@ -93,10 +69,6 @@ namespace Application.api.Controllers
             try
             {
                 await _sessionApplication.UpdateSession(id, sessionViewModel);
-
-                // Invalidate cache
-                await _redis.KeyDeleteAsync("allSessions");
-
                 return NoContent();
             }
             catch (UnauthorizedAccessException)
@@ -117,10 +89,6 @@ namespace Application.api.Controllers
             try
             {
                 await _sessionApplication.DeleteSessionId(id);
-
-                // Invalidate cache
-                await _redis.KeyDeleteAsync("allSessions");
-
                 return Ok($"Sessão com o id: {id} excluída com sucesso!");
             }
             catch (UnauthorizedAccessException)
@@ -140,22 +108,11 @@ namespace Application.api.Controllers
         {
             try
             {
-                var cachedSession = await _redis.StringGetAsync($"session:{id}");
-                if (!cachedSession.IsNullOrEmpty)
-                {
-                    var session = System.Text.Json.JsonSerializer.Deserialize<SessionViewModel>(cachedSession);
-                    return Ok(session);
-                }
-
                 var sessionFromDb = await _sessionApplication.GetSessionId(id);
                 if (sessionFromDb == null)
                 {
                     return NotFound($"Sessão com Id: {id} não encontrada.");
                 }
-
-                var sessionJson = System.Text.Json.JsonSerializer.Serialize(sessionFromDb);
-                await _redis.StringSetAsync($"session:{id}", sessionJson, TimeSpan.FromMinutes(10));
-
                 return Ok(sessionFromDb);
             }
             catch (UnauthorizedAccessException)

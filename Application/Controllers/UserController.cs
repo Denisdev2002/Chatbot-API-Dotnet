@@ -43,36 +43,36 @@ namespace Application.api.Controllers
         }
 
         //[Authorize]
-        [HttpGet("Email")]
-        public async Task<IActionResult> GetUserByEmail(string email)
-        {
-            try
-            {
-                // Check cache first
-                var cachedUser = await _redis.StringGetAsync(email);
-                if (!cachedUser.IsNullOrEmpty)
-                {
-                    return Ok(System.Text.Json.JsonSerializer.Deserialize<UserViewModel>(cachedUser));
-                }
+        //[HttpGet("Email")]
+        //public async Task<IActionResult> GetUserByEmail(string email)
+        //{
+        //    try
+        //    {
+        //        // Check cache first
+        //        var cachedUser = await _redis.StringGetAsync(email);
+        //        if (!cachedUser.IsNullOrEmpty)
+        //        {
+        //            return Ok(System.Text.Json.JsonSerializer.Deserialize<UserViewModel>(cachedUser));
+        //        }
 
-                // If not in cache, fetch from application layer
-                var user = await _userApplication.GetUserByEmailAsync(email);
-                if (user == null)
-                {
-                    return NotFound("User not found.");
-                }
+        //        // If not in cache, fetch from application layer
+        //        var user = await _userApplication.GetUserByEmailAsync(email);
+        //        if (user == null)
+        //        {
+        //            return NotFound("User not found.");
+        //        }
 
-                // Cache the result
-                var userJson = System.Text.Json.JsonSerializer.Serialize(user);
-                await _redis.StringSetAsync(email, userJson, TimeSpan.FromMinutes(10));
+        //        // Cache the result
+        //        var userJson = System.Text.Json.JsonSerializer.Serialize(user);
+        //        await _redis.StringSetAsync(email, userJson, TimeSpan.FromMinutes(10));
 
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"There was an error when searching for user with email: {email}");
-                return StatusCode((int)HttpStatusCode.InternalServerError, "There was an error when searching for the user.");
-            }
-        }
+        //        return Ok(user);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, $"There was an error when searching for user with email: {email}");
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, "There was an error when searching for the user.");
+        //    }
+        //}
     }
 }
