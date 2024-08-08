@@ -22,9 +22,5 @@ namespace Application.Service.Application
             return await _userService.LoginAsync(loginViewModel);
         }
 
-        public async Task<User?> GetUserByEmailAsync(string email)
-        {
-            return await _userService.GetUserByEmailAsync(email);
-        }
     }
 }

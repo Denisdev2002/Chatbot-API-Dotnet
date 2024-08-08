@@ -1,7 +1,6 @@
 ﻿using Application.Service.Interfaces;
 using Domain.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using StackExchange.Redis;
 using System.Net;
 using System.Text.Json;
 
@@ -13,16 +12,13 @@ namespace Application.Controllers
     {
         private readonly IConversationApplication _conversationApplication;
         private readonly ILogger<ConversationController> _logger;
-        private readonly IDatabase _redis;
 
         public ConversationController(
             IConversationApplication conversationApplication,
-            ILogger<ConversationController> logger,
-            IConnectionMultiplexer connectionMultiplexer)
+            ILogger<ConversationController> logger)
         {
             _conversationApplication = conversationApplication;
             _logger = logger;
-            _redis = connectionMultiplexer.GetDatabase();
         }
 
         [HttpGet]

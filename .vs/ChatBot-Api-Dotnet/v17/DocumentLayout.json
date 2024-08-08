@@ -3,8 +3,100 @@
   "WorkspaceRootPath": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\services\\servicejwttoken\\jwttokenserviceapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\services\\servicejwttoken\\jwttokenserviceapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|solutionrelative:application\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\interfaces\\ijwttokenserviceapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\interfaces\\ijwttokenserviceapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD6A44AB-0DFA-4DD4-8E3E-BD3AE777D185}|Domain\\Domain.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain\\entities\\datatransferobject\\tokendto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD6A44AB-0DFA-4DD4-8E3E-BD3AE777D185}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\datatransferobject\\tokendto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\services\\serviceclientapi\\requestconversationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\services\\serviceclientapi\\requestconversationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{557C90EF-5621-4A30-B1BC-0334D9C71516}|Application.Service\\Application.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application.service\\application\\jwttokenapplicationapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{557C90EF-5621-4A30-B1BC-0334D9C71516}|Application.Service\\Application.Service.csproj|solutionrelative:application.service\\application\\jwttokenapplicationapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{557C90EF-5621-4A30-B1BC-0334D9C71516}|Application.Service\\Application.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application.service\\interface\\ijwttokenapplicationapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{557C90EF-5621-4A30-B1BC-0334D9C71516}|Application.Service\\Application.Service.csproj|solutionrelative:application.service\\interface\\ijwttokenapplicationapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|solutionrelative:application\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\services\\serviceapi\\conversationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\services\\serviceapi\\conversationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\services\\serviceapi\\hashpasswordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\services\\serviceapi\\hashpasswordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\services\\serviceapi\\questionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\services\\serviceapi\\questionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\services\\serviceapi\\sessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\services\\serviceapi\\sessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\services\\serviceapi\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\services\\serviceapi\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|solutionrelative:application\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD6A44AB-0DFA-4DD4-8E3E-BD3AE777D185}|Domain\\Domain.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain\\entities\\datatransferobject\\resources.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD6A44AB-0DFA-4DD4-8E3E-BD3AE777D185}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\datatransferobject\\resources.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\services\\serviceclientapi\\connectclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\services\\serviceclientapi\\connectclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|solutionrelative:application\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D95A119-C9CE-40F5-8976-D1328FD8430F}|Infra\\Infra.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\infra\\contextdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D95A119-C9CE-40F5-8976-D1328FD8430F}|Infra\\Infra.csproj|solutionrelative:infra\\contextdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application\\controllers\\sessioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C19F3EAE-C4A4-4453-9F80-41334938FABB}|Application\\Application.csproj|solutionrelative:application\\controllers\\sessioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{557C90EF-5621-4A30-B1BC-0334D9C71516}|Application.Service\\Application.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application.service\\interface\\iuserapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{557C90EF-5621-4A30-B1BC-0334D9C71516}|Application.Service\\Application.Service.csproj|solutionrelative:application.service\\interface\\iuserapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{557C90EF-5621-4A30-B1BC-0334D9C71516}|Application.Service\\Application.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\application.service\\application\\userapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{557C90EF-5621-4A30-B1BC-0334D9C71516}|Application.Service\\Application.Service.csproj|solutionrelative:application.service\\application\\userapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\domain.service\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0CCD098-95E3-4135-963F-EB25A4C69FC9}|Domain.Service\\Domain.Service.csproj|solutionrelative:domain.service\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D95A119-C9CE-40F5-8976-D1328FD8430F}|Infra\\Infra.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\infra\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D95A119-C9CE-40F5-8976-D1328FD8430F}|Infra\\Infra.csproj|solutionrelative:infra\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D95A119-C9CE-40F5-8976-D1328FD8430F}|Infra\\Infra.csproj|c:\\users\\interfocus\\documents\\chatbot-api-dotnet\\infra\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D95A119-C9CE-40F5-8976-D1328FD8430F}|Infra\\Infra.csproj|solutionrelative:infra\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,16 +114,310 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\Program.cs",
+              "RelativeDocumentMoniker": "Application\\Program.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\Program.cs",
+              "RelativeToolTip": "Application\\Program.cs",
+              "ViewState": "AQIAAIUAAAAAAAAAAAAuwF8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:34:14.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TokenDto.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain\\Entities\\DataTransferObject\\TokenDto.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\DataTransferObject\\TokenDto.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain\\Entities\\DataTransferObject\\TokenDto.cs",
+              "RelativeToolTip": "Domain\\Entities\\DataTransferObject\\TokenDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:23:29.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "JwtTokenServiceAPI.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceJwtToken\\JwtTokenServiceAPI.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Services\\ServiceJwtToken\\JwtTokenServiceAPI.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceJwtToken\\JwtTokenServiceAPI.cs",
+              "RelativeToolTip": "Domain.Service\\Services\\ServiceJwtToken\\JwtTokenServiceAPI.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABQAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:13:19.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IJwtTokenServiceAPI.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Interfaces\\IJwtTokenServiceAPI.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Interfaces\\IJwtTokenServiceAPI.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Interfaces\\IJwtTokenServiceAPI.cs",
+              "RelativeToolTip": "Domain.Service\\Interfaces\\IJwtTokenServiceAPI.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:52:12.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RequestConversationService.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceClientAPI\\RequestConversationService.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Services\\ServiceClientAPI\\RequestConversationService.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceClientAPI\\RequestConversationService.cs",
+              "RelativeToolTip": "Domain.Service\\Services\\ServiceClientAPI\\RequestConversationService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:14:13.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "QuestionController.cs",
               "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\Controllers\\QuestionController.cs",
               "RelativeDocumentMoniker": "Application\\Controllers\\QuestionController.cs",
               "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\Controllers\\QuestionController.cs",
               "RelativeToolTip": "Application\\Controllers\\QuestionController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwCQAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-06T20:54:59.544Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IJwtTokenApplicationAPI.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Interface\\IJwtTokenApplicationAPI.cs",
+              "RelativeDocumentMoniker": "Application.Service\\Interface\\IJwtTokenApplicationAPI.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Interface\\IJwtTokenApplicationAPI.cs",
+              "RelativeToolTip": "Application.Service\\Interface\\IJwtTokenApplicationAPI.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:54:54.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "JwtTokenApplicationAPI.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Application\\JwtTokenApplicationAPI.cs",
+              "RelativeDocumentMoniker": "Application.Service\\Application\\JwtTokenApplicationAPI.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Application\\JwtTokenApplicationAPI.cs",
+              "RelativeToolTip": "Application.Service\\Application\\JwtTokenApplicationAPI.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:56:24.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "HashPasswordService.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\HashPasswordService.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Services\\ServiceAPI\\HashPasswordService.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\HashPasswordService.cs",
+              "RelativeToolTip": "Domain.Service\\Services\\ServiceAPI\\HashPasswordService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T18:13:02.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ConversationService.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\ConversationService.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Services\\ServiceAPI\\ConversationService.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\ConversationService.cs",
+              "RelativeToolTip": "Domain.Service\\Services\\ServiceAPI\\ConversationService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T18:13:03.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Resources.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain\\Entities\\DataTransferObject\\Resources.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\DataTransferObject\\Resources.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain\\Entities\\DataTransferObject\\Resources.cs",
+              "RelativeToolTip": "Domain\\Entities\\DataTransferObject\\Resources.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:22:47.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\UserService.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Services\\ServiceAPI\\UserService.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\UserService.cs",
+              "RelativeToolTip": "Domain.Service\\Services\\ServiceAPI\\UserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:36:09.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SessionService.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\SessionService.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Services\\ServiceAPI\\SessionService.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\SessionService.cs",
+              "RelativeToolTip": "Domain.Service\\Services\\ServiceAPI\\SessionService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAQwBwAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:35:50.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "QuestionService.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\QuestionService.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Services\\ServiceAPI\\QuestionService.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceAPI\\QuestionService.cs",
+              "RelativeToolTip": "Domain.Service\\Services\\ServiceAPI\\QuestionService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:34:51.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Application\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Application\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAiwCoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:30:45.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ConnectClientService.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceClientAPI\\ConnectClientService.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Services\\ServiceClientAPI\\ConnectClientService.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Services\\ServiceClientAPI\\ConnectClientService.cs",
+              "RelativeToolTip": "Domain.Service\\Services\\ServiceClientAPI\\ConnectClientService.cs",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAcwEMAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:14:02.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\appsettings.json",
+              "RelativeDocumentMoniker": "Application\\appsettings.json",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\appsettings.json",
+              "RelativeToolTip": "Application\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-08-08T17:09:51.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "SessionController.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\Controllers\\SessionController.cs",
+              "RelativeDocumentMoniker": "Application\\Controllers\\SessionController.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application\\Controllers\\SessionController.cs",
+              "RelativeToolTip": "Application\\Controllers\\SessionController.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAowBIAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:28:44.118Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ContextDatabase.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Infra\\ContextDatabase.cs",
+              "RelativeDocumentMoniker": "Infra\\ContextDatabase.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Infra\\ContextDatabase.cs",
+              "RelativeToolTip": "Infra\\ContextDatabase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T15:37:39.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IUserApplication.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Interface\\IUserApplication.cs",
+              "RelativeDocumentMoniker": "Application.Service\\Interface\\IUserApplication.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Interface\\IUserApplication.cs",
+              "RelativeToolTip": "Application.Service\\Interface\\IUserApplication.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:37:22.178Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UserApplication.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Application\\UserApplication.cs",
+              "RelativeDocumentMoniker": "Application.Service\\Application\\UserApplication.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Application.Service\\Application\\UserApplication.cs",
+              "RelativeToolTip": "Application.Service\\Application\\UserApplication.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAD4vwsAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:37:11.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "Domain.Service\\Interfaces\\IUserService.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Domain.Service\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "Domain.Service\\Interfaces\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:36:48.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Infra\\Interfaces\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Infra\\Interfaces\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Infra\\Interfaces\\IUserRepository.cs",
+              "RelativeToolTip": "Infra\\Interfaces\\IUserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:34:06.924Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Infra\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Infra\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\Interfocus\\Documents\\ChatBot-Api-Dotnet\\Infra\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Infra\\Repositories\\UserRepository.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAmwDYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T14:33:21.918Z"
             }
           ]
         }

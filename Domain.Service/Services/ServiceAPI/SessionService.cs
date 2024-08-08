@@ -12,18 +12,15 @@ namespace Domain.Service.Service.ServiceAPI
     {
         private readonly ISessionRepository _sessionRepository;
         private readonly ILogger<SessionService> _logger;
-        private readonly IUserRepository _userRepository;
         private readonly RequestConversationService _requestConversationService;
 
         public SessionService(
             ISessionRepository sessionRepository,
             ILogger<SessionService> logger,
-            IUserRepository userRepository,
             RequestConversationService requestConversationService)
         {
             _sessionRepository = sessionRepository;
             _logger = logger;
-            _userRepository = userRepository;
             _requestConversationService = requestConversationService;
         }
 

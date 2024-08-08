@@ -13,27 +13,19 @@ namespace Domain.Service.Services.ServiceApi
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
         private readonly ILogger<UserService> _logger;
         private readonly HashPasswordService _hashPassword;
         private readonly RequestSessionService _requestSessionService;
 
-        public UserService(IUserRepository userRepository, 
+        public UserService(
             ILogger<UserService> logger, 
             HashPasswordService hashPassword, 
             RequestSessionService requestSessionService
             )
         {
-            _userRepository = userRepository;
             _logger = logger;
             _hashPassword = hashPassword;
-   
             _requestSessionService = requestSessionService;
-        }
-
-        public async Task<User?> GetUserByEmailAsync(string email)
-        {
-            return await _userRepository.GetUserByEmailAsync(email);
         }
 
         public async Task<TokenDto> LoginAsync(LoginViewModel loginViewModel)

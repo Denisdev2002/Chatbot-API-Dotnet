@@ -14,13 +14,7 @@ using Infra;
 using Domain.Service.Service.ServiceAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using StackExchange.Redis;
-using Domain.Service.Services.Cache.Interface;
-using Domain.Service.Services.Cache.ServiceCacheRedis;
-using Application.Service.Application.Cache;
-using Application.Service.Interface.Cache;
-using System.Text.Json.Serialization;
-using System.Text.Json;
+using Application.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,22 +26,9 @@ var configuration = new ConfigurationBuilder()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", builder =>
-    builder.WithOrigins("*")
-           .AllowAnyMethod()
-           .AllowAnyHeader());
-
-});
-
-var redisConnectionString = configuration["Redis:ConnectionString"];
-if (string.IsNullOrEmpty(redisConnectionString))
-{
-    throw new InvalidOperationException("Redis connection string is not configured.");
-}
-
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = redisConnectionString;
-    options.InstanceName = configuration["Redis:InstanceName"];
+        builder.WithOrigins("*")
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 });
 
 var secret = configuration["Jwt:Key"];
@@ -69,8 +50,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(key)
         };
     });
-
-builder.Services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -106,48 +85,34 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 });
 
-//.AddJsonOptions(x =>
-//x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
-
-
-
-//JsonSerializerOptions options = new()
-//{
-//    ReferenceHandler = ReferenceHandler.IgnoreCycles,
-//    WriteIndented = true
-//};
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddProblemDetails();
 
-//builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddHttpClient<JwtTokenServiceAPI>(client =>
+{
+    client.BaseAddress = new Uri("http://192.168.10.40:92");
+    client.DefaultRequestHeaders.Add("ApplicationKey", "MzE0NzFlNWYyMjdhLTQzYWItOTRjMi0wZGZlMDdmZDhlNGE=");
+});
+
+
 builder.Services.AddScoped<IUserApplication, UserApplication>();
 builder.Services.AddScoped<IUserService, UserService>();
-
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IQuestionApplication, QuestionApplication>();
-
 builder.Services.AddScoped<ISessionRepository, SessionRepository>();
 builder.Services.AddScoped<ISessionService, SessionService>();
 builder.Services.AddScoped<ISessionApplication, SessionApplication>();
-
 builder.Services.AddScoped<IConversationRepository, ConversationRepository>();
 builder.Services.AddScoped<IConversationService, ConversationService>();
 builder.Services.AddScoped<IConversationApplication, ConversationApplication>();
-
-builder.Services.AddScoped<ICacheService, CacheService>();
-builder.Services.AddScoped<ICacheApplication, CacheApplication>();
-
-
+builder.Services.AddScoped<IJwtTokenServiceAPI, JwtTokenServiceAPI>();
+builder.Services.AddScoped<IJwtTokenApplicationAPI, JwtTokenApplicationAPI>();
 builder.Services.AddScoped<RequestConversationService>();
 builder.Services.AddScoped<HashPasswordService>();
 builder.Services.AddScoped<RequestSessionService>();
 builder.Services.AddScoped<ConnectClientService>();
-
 builder.Services.AddScoped<ContextDatabase>();
-
-// Configuração do Redis para injeção de dependência
-builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnectionString));
 
 var app = builder.Build();
 
@@ -160,18 +125,25 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseCors("AllowSpecificOrigin");
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.UseWebSockets();
-
 app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+await InitializeApplicationAsync(app);
+
 app.Run();
+
+async Task InitializeApplicationAsync(WebApplication app)
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var jwtTokenService = scope.ServiceProvider.GetRequiredService<IJwtTokenServiceAPI>();
+        await jwtTokenService.InitializeAsync();
+    }
+}

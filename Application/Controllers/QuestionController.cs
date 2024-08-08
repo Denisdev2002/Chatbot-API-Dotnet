@@ -1,11 +1,7 @@
 ﻿using Application.Service.Interfaces;
 using Domain.ViewModel;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using StackExchange.Redis;
 using System.Net;
-using System.Text.Json;
 
 namespace Application.api.Controllers
 {
@@ -16,7 +12,10 @@ namespace Application.api.Controllers
         private readonly IQuestionApplication _questionApplication;
         private readonly ILogger<QuestionController> _logger;
 
-        public QuestionController(IQuestionApplication questionApplication, ILogger<QuestionController> logger)
+        public QuestionController(
+            IQuestionApplication questionApplication, 
+            ILogger<QuestionController> logger
+            )
         {
             _questionApplication = questionApplication;
             _logger = logger;
@@ -31,10 +30,6 @@ namespace Application.api.Controllers
             {
 
                 var responseFromModel = await _questionApplication.ToAsk(idQuestion);
-
-                //var responseJson = JsonConvert.SerializeObject(responseFromModel);
-                //await _redis.StringSetAsync(cacheKey, responseJson, TimeSpan.FromMinutes(10));
-
                 return Ok(responseFromModel);
             }
             catch (Exception ex)

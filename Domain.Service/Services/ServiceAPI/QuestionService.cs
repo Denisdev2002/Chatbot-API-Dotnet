@@ -5,6 +5,7 @@ using Domain.ViewModel;
 using Infra.Interfaces;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Domain.Service.Services.ServiceApi
 {
@@ -15,21 +16,19 @@ namespace Domain.Service.Services.ServiceApi
         private readonly IConversationRepository _conversationRepository;
         private readonly ILogger<QuestionService> _logger;
         private readonly ISessionRepository _sessionRepository;
-        private readonly IUserRepository _userRepository;
+
 
         public QuestionService(RequestConversationService requestConversation,
             IQuestionRepository questionRepository,
             IConversationRepository conversationRepository,
             ILogger<QuestionService> logger,
-            ISessionRepository sessionRepository,
-            IUserRepository userRepository)
+            ISessionRepository sessionRepository)
         {
             _requestConversation = requestConversation;
             _questionRepository = questionRepository;
             _conversationRepository = conversationRepository;
             _logger = logger;
             _sessionRepository = sessionRepository;
-            _userRepository = userRepository;
         }
 
         public async Task<Conversation> ToAsk(string idQuestion)
@@ -42,15 +41,17 @@ namespace Domain.Service.Services.ServiceApi
                 {
                     throw new Exception("Pergunta não encontrada.");
                 }
+
                 Console.WriteLine("Questão : " + question.text);
-                var responseContent = await _requestConversation.MakePostRequest(question);
+                
+                 var responseContent = await _requestConversation.MakePostRequest(question);
+                 var conversation = JsonConvert.DeserializeObject<Conversation>(responseContent);
 
-                var conversation = JsonConvert.DeserializeObject<Conversation>(responseContent);
+                 if (conversation == null)
+                 {
+                       throw new Exception("Não foi possível deserializar a resposta.");
+                 }
 
-                if (conversation == null)
-                {
-                    throw new Exception("Não foi possível deserializar a resposta.");
-                }
 
                 var insertConversation = new Conversation
                 {
@@ -63,14 +64,14 @@ namespace Domain.Service.Services.ServiceApi
                         ResponseId = conversation.ResponseId,
                         Result = conversation.Response.Result,
                         Sources = new List<Source>
-                        {
-                            new Source
-                            {
-                                SourceId = Guid.NewGuid().ToString(),
-                                SourceDocument = conversation.Response.Sources[0].SourceDocument,
-                                PageDocument = conversation.Response.Sources[0].PageDocument
-                            }
-                        }
+                {
+                    new Source
+                    {
+                        SourceId = Guid.NewGuid().ToString(),
+                        SourceDocument = conversation.Response.Sources[0].SourceDocument,
+                        PageDocument = conversation.Response.Sources[0].PageDocument
+                    }
+                }
                     }
                 };
 
@@ -93,6 +94,7 @@ namespace Domain.Service.Services.ServiceApi
                 throw;
             }
         }
+
 
         public async Task<List<Question>> GetQuestions()
         {
@@ -141,7 +143,6 @@ namespace Domain.Service.Services.ServiceApi
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro ao criar conversa.");
-                // Tratar objeto nulo
                 throw;
             }
         }

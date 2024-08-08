@@ -10,6 +10,5 @@ namespace Application.Service.Interfaces
     public interface IUserApplication
     {
         Task<TokenDto> LoginAsync(LoginViewModel loginViewModel);
-        Task<User?> GetUserByEmailAsync(string email);
     }
 }

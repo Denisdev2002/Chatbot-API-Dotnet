@@ -13,13 +13,13 @@ namespace Application.api.Controllers
     {
         private readonly ISessionApplication _sessionApplication;
         private readonly ILogger<SessionController> _logger;
-        private readonly IDatabase _redis;
 
-        public SessionController(ISessionApplication sessionApplication, ILogger<SessionController> logger, IConnectionMultiplexer connectionMultiplexer)
+        public SessionController(
+            ISessionApplication sessionApplication, 
+            ILogger<SessionController> logger)
         {
             _sessionApplication = sessionApplication;
             _logger = logger;
-            _redis = connectionMultiplexer.GetDatabase();
         }
 
         //[Authorize]
